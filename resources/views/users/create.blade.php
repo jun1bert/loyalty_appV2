@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
                 User Management
             </p>
 
@@ -28,7 +28,7 @@
 
                 <div>
 
-                    <label class="block text-sm font-medium text-[#493B32] mb-2">
+                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                         Full Name
                     </label>
 
@@ -51,7 +51,7 @@
 
                 <div>
 
-                    <label class="block text-sm font-medium text-[#493B32] mb-2">
+                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                         Email
                     </label>
 
@@ -74,7 +74,7 @@
 
                 <div>
 
-                    <label class="block text-sm font-medium text-[#493B32] mb-2">
+                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                         Role
                     </label>
 
@@ -109,7 +109,7 @@
                         </option>
                     </select>
 
-                    <p class="text-xs text-[#8B796A] mt-2">
+                    <p class="text-xs text-[#C9B46B] mt-2">
                         Staff can only use the QR scanner. Management can manage
                         services, loyalty plans, customers and transactions.
                     </p>
@@ -125,7 +125,7 @@
 
                 <div>
 
-                    <label class="block text-sm font-medium text-[#493B32] mb-2">
+                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                         Password
                     </label>
 
@@ -147,7 +147,7 @@
 
                 <div>
 
-                    <label class="block text-sm font-medium text-[#493B32] mb-2">
+                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                         Confirm Password
                     </label>
 

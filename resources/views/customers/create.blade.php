@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
                 Customers
             </p>
 
@@ -18,20 +18,21 @@
 
             <form method="POST"
                   action="{{ route('customers.store') }}"
+                  enctype="multipart/form-data"
                   class="space-y-6">
 
                 @csrf
 
                 {{-- Customer Information --}}
                 <div>
-                    <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-4">
+                    <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-4">
                         Customer Information
                     </p>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
                         <div>
-                            <label class="block text-sm font-medium text-[#493B32] mb-2">
+                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                                 First Name
                             </label>
 
@@ -52,7 +53,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-[#493B32] mb-2">
+                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                                 Last Name
                             </label>
 
@@ -73,7 +74,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-[#493B32] mb-2">
+                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                                 Mobile Number
                             </label>
 
@@ -93,7 +94,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-[#493B32] mb-2">
+                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                                 Birth Date
                             </label>
 
@@ -111,22 +112,46 @@
                             @enderror
                         </div>
 
+                        <div class="sm:col-span-2">
+                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                                Customer Photo
+                                <span class="text-[#C9B46B] font-normal">(optional)</span>
+                            </label>
+
+                            <input
+                                type="file"
+                                name="photo"
+                                accept="image/*"
+                                class="theme-input file:mr-4 file:rounded-lg file:border-0 file:bg-[#D4AF37] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#0D0D0D]"
+                            >
+
+                            <p class="text-xs text-[#C9B46B] mt-2">
+                                Upload a clear customer photo for staff verification. Maximum size: 2 MB.
+                            </p>
+
+                            @error('photo')
+                                <p class="text-red-600 text-xs mt-2">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+
                     </div>
                 </div>
 
                 {{-- Loyalty Plan --}}
-                <div class="border-t border-[#E6DAC8] pt-6">
+                <div class="border-t border-[#3A321F] pt-6">
 
-                    <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-2">
+                    <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-2">
                         Loyalty Membership
                     </p>
 
-                    <p class="text-sm text-[#8B796A] mb-4">
+                    <p class="text-sm text-[#C9B46B] mb-4">
                         Select the loyalty card the customer is availing.
                     </p>
 
                     <div>
-                        <label class="block text-sm font-medium text-[#493B32] mb-2">
+                        <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                             Loyalty Plan
                         </label>
 
@@ -161,13 +186,13 @@
                 </div>
 
                 {{-- Information Box --}}
-                <div class="rounded-xl bg-[#E6DAC8]/50 p-5">
+                <div class="rounded-xl bg-[#3A321F]/50 p-5">
 
-                    <p class="font-serif text-lg text-[#493B32]">
+                    <p class="font-serif text-lg text-[#F7E7B2]">
                         What happens after registration?
                     </p>
 
-                    <p class="text-sm text-[#6F5E51] mt-2 leading-6">
+                    <p class="text-sm text-[#D8C98A] mt-2 leading-6">
                         The customer's loyalty membership will be activated immediately.
                         The system will automatically generate a unique membership code,
                         QR token, activation date, and expiration date based on the
@@ -200,3 +225,4 @@
     </div>
 
 </x-app-layout>
+

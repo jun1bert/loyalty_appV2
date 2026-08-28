@@ -31,6 +31,7 @@ class SyncExternalServices extends Command
         $nameColumn = env('SERVICES_DB_NAME_COLUMN', 'name');
         $priceColumn = env('SERVICES_DB_PRICE_COLUMN', 'price');
         $activeColumn = env('SERVICES_DB_ACTIVE_COLUMN', 'is_active');
+        $sessionCountColumn = env('SERVICES_DB_SESSION_COUNT_COLUMN', 'session_count');
 
         try {
             if (!Schema::connection('external_services')->hasTable($table)) {
@@ -39,13 +40,22 @@ class SyncExternalServices extends Command
                 return self::FAILURE;
             }
 
+            $hasSessionCountColumn = $sessionCountColumn !== ''
+                && Schema::connection('external_services')->hasColumn($table, $sessionCountColumn);
+
+            $columns = [
+                $nameColumn . ' as name',
+                $priceColumn . ' as price',
+                $activeColumn . ' as is_active',
+            ];
+
+            if ($hasSessionCountColumn) {
+                $columns[] = $sessionCountColumn . ' as session_count';
+            }
+
             $query = DB::connection('external_services')
                 ->table($table)
-                ->select([
-                    $nameColumn . ' as name',
-                    $priceColumn . ' as price',
-                    $activeColumn . ' as is_active',
-                ])
+                ->select($columns)
                 ->whereNotNull($nameColumn)
                 ->where($nameColumn, '!=', '');
 
@@ -88,12 +98,23 @@ class SyncExternalServices extends Command
             $service->price = $sourceService->price;
             $service->is_active = (bool) $sourceService->is_active;
 
+            if (property_exists($sourceService, 'session_count')) {
+                $sessionCount = (int) $sourceService->session_count;
+
+                $service->is_package = $sessionCount > 1;
+                $service->session_count = $sessionCount > 1 ? $sessionCount : null;
+            }
+
             if ($isNew) {
                 $service->discount_eligible = true;
             }
 
             if ($this->option('dry-run')) {
-                $this->line(($isNew ? 'Create' : 'Update') . ": {$name} - PHP " . number_format((float) $sourceService->price, 2));
+                $packageLabel = property_exists($sourceService, 'session_count') && (int) $sourceService->session_count > 1
+                    ? " ({$sourceService->session_count} sessions)"
+                    : '';
+
+                $this->line(($isNew ? 'Create' : 'Update') . ": {$name} - PHP " . number_format((float) $sourceService->price, 2) . $packageLabel);
                 continue;
             }
 

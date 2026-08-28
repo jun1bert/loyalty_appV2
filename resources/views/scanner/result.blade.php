@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
                 Loyalty Verification
             </p>
 
@@ -19,39 +19,54 @@
 
     <div class="max-w-4xl">
 
-        <div class="rounded-2xl bg-[#A48D78] text-white p-7 sm:p-8 shadow-sm">
-            <div class="flex flex-col sm:flex-row sm:justify-between gap-5">
+        <div class="premium-card rounded-2xl p-7 text-[#F7E7B2] sm:p-8">
+            <div class="relative flex flex-col sm:flex-row sm:justify-between gap-5">
                 <div>
-                    <p class="text-xs uppercase tracking-[0.3em] text-white/70">
+                    <p class="premium-eyebrow">
                         Martinis & Manicures
                     </p>
 
-                    <h2 class="font-serif text-3xl text-white mt-2">
+                    <h2 class="gold-foil-text font-serif text-3xl mt-2">
                         Active Loyalty Member
                     </h2>
                 </div>
 
-                <span class="self-start rounded-full bg-[#FAF9F6]
-                             text-[#6A5849] px-4 py-1.5
-                             text-xs font-semibold">
+                <span class="self-start rounded-full border border-[#D4AF37]/50 bg-black/60
+                             text-[#F7E7B2] px-4 py-1.5
+                             text-xs font-semibold shadow-lg shadow-black/30">
                     ACTIVE
                 </span>
             </div>
 
-            <div class="mt-8">
-                <p class="text-sm text-white/70">
-                    Customer
-                </p>
+            <div class="relative mt-8 flex items-center gap-4">
+                @if($customer->photo_path)
+                    <span class="customer-avatar-md border-white/30">
+                        <img
+                            src="{{ Storage::url($customer->photo_path) }}"
+                            alt="{{ $customer->first_name }} {{ $customer->last_name }}"
+                        >
+                    </span>
+                @else
+                    <div class="customer-avatar-md border-white/30 bg-white/15 text-white">
+                        {{ strtoupper(substr($customer->first_name, 0, 1) . substr($customer->last_name, 0, 1)) }}
+                    </div>
+                @endif
 
-                <p class="text-2xl font-medium mt-1">
-                    {{ $customer->first_name }}
-                    {{ $customer->last_name }}
-                </p>
+                <div>
+                    <p class="text-sm text-[#C9B46B]">
+                        Customer
+                    </p>
+
+                    <p class="text-2xl font-medium mt-1">
+                        {{ $customer->first_name }}
+                        {{ $customer->last_name }}
+                    </p>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-8">
+            <div class="relative grid grid-cols-1 sm:grid-cols-3 gap-5 mt-8 border-t border-[#D4AF37]/20 pt-6">
                 <div>
-                    <p class="text-xs text-white/60">
+                    <p class="text-xs text-[#C9B46B]">
                         Membership
                     </p>
 
@@ -61,7 +76,7 @@
                 </div>
 
                 <div>
-                    <p class="text-xs text-white/60">
+                    <p class="text-xs text-[#C9B46B]">
                         Discount
                     </p>
 
@@ -71,7 +86,7 @@
                 </div>
 
                 <div>
-                    <p class="text-xs text-white/60">
+                    <p class="text-xs text-[#C9B46B]">
                         Valid Until
                     </p>
 
@@ -86,15 +101,15 @@
 
         <div class="theme-card mt-6 p-6 sm:p-8">
             <div class="mb-6">
-                <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78]">
+                <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
                     Services
                 </p>
 
-                <h3 class="font-serif text-2xl text-[#493B32] mt-1">
+                <h3 class="font-serif text-2xl text-[#F7E7B2] mt-1">
                     Select Customer Services
                 </h3>
 
-                <p class="text-sm text-[#8B796A] mt-2">
+                <p class="text-sm text-[#C9B46B] mt-2">
                     Select all services received during this visit.
                     Variable-price services require the actual amount before checkout.
                 </p>
@@ -108,9 +123,9 @@
                 <div class="space-y-3">
                     @forelse($services as $service)
                         <label
-                            class="flex flex-col gap-4 rounded-xl border border-[#E6DAC8]
-                                   bg-[#FAF9F6] p-4 sm:p-5 cursor-pointer
-                                   hover:border-[#CBB9A4] hover:bg-[#F4F1EA]
+                            class="flex flex-col gap-4 rounded-xl border border-[#3A321F]
+                                   bg-[#0D0D0D] p-4 sm:p-5 cursor-pointer
+                                   hover:border-[#B8860B] hover:bg-[#1A1A1A]
                                    transition">
 
                             <div class="flex items-center justify-between gap-5">
@@ -119,29 +134,35 @@
                                         type="checkbox"
                                         name="services[]"
                                         value="{{ $service->id }}"
-                                        class="h-5 w-5 rounded border-[#CBB9A4]
-                                               text-[#A48D78] focus:ring-[#A48D78]"
+                                        class="h-5 w-5 rounded border-[#B8860B]
+                                               text-[#D4AF37] focus:ring-[#D4AF37]"
                                     >
 
                                     <div>
-                                        <p class="font-medium text-[#493B32]">
+                                        <p class="font-medium text-[#F7E7B2]">
                                             {{ $service->name }}
                                         </p>
 
                                         @if($service->discount_eligible)
-                                            <p class="text-xs text-[#A48D78] mt-1">
+                                            <p class="text-xs text-[#D4AF37] mt-1">
                                                 Counts toward minimum spend
                                             </p>
                                         @else
-                                            <p class="text-xs text-[#8B796A] mt-1">
+                                            <p class="text-xs text-[#C9B46B] mt-1">
                                                 Not eligible for loyalty discount
+                                            </p>
+                                        @endif
+
+                                        @if($service->is_package)
+                                            <p class="text-xs text-[#C9B46B] mt-1">
+                                                Package: {{ $service->session_count }} sessions
                                             </p>
                                         @endif
                                     </div>
                                 </div>
 
                                 <div class="text-right">
-                                    <p class="font-semibold text-[#493B32] whitespace-nowrap">
+                                    <p class="font-semibold text-[#F7E7B2] whitespace-nowrap">
                                         @if((float) $service->price > 0)
                                             PHP {{ number_format($service->price, 2) }}
                                         @else
@@ -150,18 +171,61 @@
                                     </p>
 
                                     @if($service->discount_eligible)
-                                        <p class="text-xs text-[#A48D78] mt-1">
+                                        <p class="text-xs text-[#D4AF37] mt-1">
                                             -{{ number_format($plan->discount_percentage, 0) }}%
                                         </p>
                                     @endif
                                 </div>
                             </div>
 
+                            @if($service->is_package)
+                                <div class="grid gap-3 sm:ml-9 sm:grid-cols-2">
+                                    <div>
+                                        <label
+                                            for="package_mode_{{ $service->id }}"
+                                            class="block text-xs font-semibold uppercase tracking-[0.14em] text-[#C9B46B]">
+                                            Package Use
+                                        </label>
+
+                                        <select
+                                            id="package_mode_{{ $service->id }}"
+                                            name="package_modes[{{ $service->id }}]"
+                                            class="theme-input mt-2">
+                                            <option value="purchase" {{ old('package_modes.' . $service->id, 'purchase') === 'purchase' ? 'selected' : '' }}>
+                                                Charge full package today
+                                            </option>
+                                            <option value="redeem" {{ old('package_modes.' . $service->id) === 'redeem' ? 'selected' : '' }}>
+                                                Redeem prepaid session
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label
+                                            for="sessions_redeemed_{{ $service->id }}"
+                                            class="block text-xs font-semibold uppercase tracking-[0.14em] text-[#C9B46B]">
+                                            Sessions Used
+                                        </label>
+
+                                        <input
+                                            id="sessions_redeemed_{{ $service->id }}"
+                                            type="number"
+                                            name="sessions_redeemed[{{ $service->id }}]"
+                                            value="{{ old('sessions_redeemed.' . $service->id, 1) }}"
+                                            min="1"
+                                            max="{{ $service->session_count }}"
+                                            step="1"
+                                            class="theme-input mt-2"
+                                        >
+                                    </div>
+                                </div>
+                            @endif
+
                             @if((float) $service->price <= 0)
                                 <div class="sm:ml-9">
                                     <label
                                         for="custom_price_{{ $service->id }}"
-                                        class="block text-xs font-semibold uppercase tracking-[0.14em] text-[#8B796A]">
+                                        class="block text-xs font-semibold uppercase tracking-[0.14em] text-[#C9B46B]">
                                         Actual Price
                                     </label>
 
@@ -173,17 +237,17 @@
                                         min="0"
                                         step="0.01"
                                         placeholder="0.00"
-                                        class="mt-2 w-full sm:max-w-xs rounded-lg border-[#E6DAC8]
-                                               bg-white text-[#493B32]
-                                               focus:border-[#A48D78]
-                                               focus:ring-[#A48D78]"
+                                        class="mt-2 w-full sm:max-w-xs rounded-lg border-[#D4AF37]/40
+                                               bg-black/40 text-[#F7E7B2]
+                                               focus:border-[#D4AF37]
+                                               focus:ring-[#D4AF37]"
                                     >
                                 </div>
                             @endif
                         </label>
                     @empty
-                        <div class="rounded-xl bg-[#F4F1EA] p-8 text-center">
-                            <p class="text-[#8B796A]">
+                        <div class="rounded-xl bg-[#1A1A1A] p-8 text-center">
+                            <p class="text-[#C9B46B]">
                                 No active services available.
                             </p>
                         </div>
@@ -206,9 +270,32 @@
                     </div>
                 @enderror
 
+                <div class="mt-6 rounded-xl border border-[#D4AF37]/25 bg-black/20 p-4">
+                    <label
+                        for="promo_code"
+                        class="block text-xs font-semibold uppercase tracking-[0.14em] text-[#D4AF37]">
+                        Promo Code
+                    </label>
+
+                    <input
+                        id="promo_code"
+                        type="text"
+                        name="promo_code"
+                        value="{{ old('promo_code') }}"
+                        placeholder="Optional owner or influencer code"
+                        class="theme-input mt-2 uppercase"
+                    >
+
+                    @error('promo_code')
+                        <p class="mt-2 text-xs text-red-300">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
                 @if($services->isNotEmpty())
                     <div class="flex flex-col sm:flex-row sm:items-center gap-3
-                                border-t border-[#E6DAC8] mt-6 pt-6">
+                                border-t border-[#3A321F] mt-6 pt-6">
                         <button type="submit" class="btn-primary text-center">
                             Calculate Discount
                         </button>
@@ -223,3 +310,4 @@
     </div>
 
 </x-app-layout>
+

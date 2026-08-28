@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
                 Loyalty Management
             </p>
 
@@ -20,7 +20,7 @@
         <div>
             <a
                 href="{{ route('memberships.index') }}"
-                class="text-sm font-medium text-[#A48D78] hover:text-[#7C6757]"
+                class="text-sm font-medium text-[#D4AF37] hover:text-[#F2C94C]"
             >
                 ← Back to Memberships
             </a>
@@ -37,13 +37,13 @@
 
 
                 {{-- LEFT SIDE --}}
-                <div class="p-8 sm:p-10 bg-[#493B32] text-[#FAF9F6]">
+                <div class="p-8 sm:p-10 bg-[#F7E7B2] text-[#0D0D0D]">
 
                     <p class="text-[10px] uppercase tracking-[0.35em] text-[#D8C6B4]">
                         Martinis & Manicures
                     </p>
 
-                    <h2 class="font-serif text-3xl mt-5 text-[#FAF9F6]">
+                    <h2 class="font-serif text-3xl mt-5 text-[#0D0D0D]">
                         Loyalty Card
                     </h2>
 
@@ -113,11 +113,11 @@
                 {{-- RIGHT SIDE / QR --}}
                 <div class="p-8 sm:p-10 flex flex-col items-center justify-center">
 
-                    <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78]">
+                    <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
                         Membership QR
                     </p>
 
-                    <div class="mt-5 bg-white rounded-xl border border-[#E6DAC8] p-5">
+                    <div class="mt-5 bg-white rounded-xl border border-[#3A321F] p-5">
 
                         {!! QrCode::size(220)
                             ->margin(1)
@@ -125,7 +125,7 @@
 
                     </div>
 
-                    <p class="text-sm text-[#8B796A] text-center mt-5 max-w-xs">
+                    <p class="text-sm text-[#C9B46B] text-center mt-5 max-w-xs">
                         Scan this QR code when the customer visits
                         Martinis & Manicures.
                     </p>
@@ -145,11 +145,11 @@
 
             <div class="mb-6">
 
-                <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78]">
+                <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
                     Membership Information
                 </p>
 
-                <h2 class="font-serif text-2xl text-[#493B32] mt-1">
+                <h2 class="font-serif text-2xl text-[#F7E7B2] mt-1">
                     Details
                 </h2>
 
@@ -162,11 +162,11 @@
                 {{-- CUSTOMER --}}
                 <div>
 
-                    <p class="text-xs text-[#8B796A]">
+                    <p class="text-xs text-[#C9B46B]">
                         Customer
                     </p>
 
-                    <p class="font-medium text-[#493B32] mt-1">
+                    <p class="font-medium text-[#F7E7B2] mt-1">
                         {{ $membership->customer->first_name }}
                         {{ $membership->customer->last_name }}
                     </p>
@@ -177,11 +177,11 @@
                 {{-- PLAN --}}
                 <div>
 
-                    <p class="text-xs text-[#8B796A]">
+                    <p class="text-xs text-[#C9B46B]">
                         Loyalty Plan
                     </p>
 
-                    <p class="font-medium text-[#493B32] mt-1">
+                    <p class="font-medium text-[#F7E7B2] mt-1">
                         {{ $membership->loyaltyPlan?->name ?? '—' }}
                     </p>
 
@@ -191,11 +191,11 @@
                 {{-- ACTIVATED --}}
                 <div>
 
-                    <p class="text-xs text-[#8B796A]">
+                    <p class="text-xs text-[#C9B46B]">
                         Activated
                     </p>
 
-                    <p class="font-medium text-[#493B32] mt-1">
+                    <p class="font-medium text-[#F7E7B2] mt-1">
 
                         {{ $membership->activated_at
                             ? $membership->activated_at->format('M d, Y')
@@ -209,11 +209,11 @@
                 {{-- EXPIRATION --}}
                 <div>
 
-                    <p class="text-xs text-[#8B796A]">
+                    <p class="text-xs text-[#C9B46B]">
                         Expiration
                     </p>
 
-                    <p class="font-medium text-[#493B32] mt-1">
+                    <p class="font-medium text-[#F7E7B2] mt-1">
 
                         {{ $membership->expires_at
                             ? $membership->expires_at->format('M d, Y')
@@ -227,11 +227,11 @@
                 {{-- DISCOUNT --}}
                 <div>
 
-                    <p class="text-xs text-[#8B796A]">
+                    <p class="text-xs text-[#C9B46B]">
                         Discount
                     </p>
 
-                    <p class="font-medium text-[#493B32] mt-1">
+                    <p class="font-medium text-[#F7E7B2] mt-1">
 
                         {{ number_format(
                             $membership->loyaltyPlan?->discount_percentage ?? 0,
@@ -246,11 +246,11 @@
                 {{-- MEMBERSHIP NUMBER --}}
                 <div>
 
-                    <p class="text-xs text-[#8B796A]">
+                    <p class="text-xs text-[#C9B46B]">
                         Membership Number
                     </p>
 
-                    <p class="font-medium text-[#493B32] mt-1">
+                    <p class="font-medium text-[#F7E7B2] mt-1">
                         {{ $membership->membership_code }}
                     </p>
 
@@ -260,7 +260,7 @@
                 {{-- STATUS --}}
                 <div>
 
-                    <p class="text-xs text-[#8B796A] mb-2">
+                    <p class="text-xs text-[#C9B46B] mb-2">
                         Status
                     </p>
 
@@ -305,11 +305,11 @@
 
         <div class="theme-card p-6 sm:p-8">
 
-            <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78]">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
                 Customer Information
             </p>
 
-            <h2 class="font-serif text-2xl text-[#493B32] mt-1 mb-6">
+            <h2 class="font-serif text-2xl text-[#F7E7B2] mt-1 mb-6">
                 Contact Details
             </h2>
 
@@ -318,11 +318,11 @@
 
                 <div>
 
-                    <p class="text-xs text-[#8B796A]">
+                    <p class="text-xs text-[#C9B46B]">
                         Email
                     </p>
 
-                    <p class="font-medium text-[#493B32] mt-1">
+                    <p class="font-medium text-[#F7E7B2] mt-1">
                         {{ $membership->customer->user?->email ?? 'No app account yet' }}
                     </p>
 
@@ -331,11 +331,11 @@
 
                 <div>
 
-                    <p class="text-xs text-[#8B796A]">
+                    <p class="text-xs text-[#C9B46B]">
                         Phone
                     </p>
 
-                    <p class="font-medium text-[#493B32] mt-1">
+                    <p class="font-medium text-[#F7E7B2] mt-1">
                         {{ $membership->customer->phone ?? '—' }}
                     </p>
 
@@ -361,3 +361,4 @@
     </div>
 
 </x-app-layout>
+

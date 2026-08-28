@@ -8,30 +8,23 @@
         <title>{{ config('app.name', 'Martinis & Manicures Loyalty') }}</title>
         <link rel="icon" type="image/png" href="{{ asset('images/martinis-icon.png') }}">
         <link rel="apple-touch-icon" href="{{ asset('images/martinis-icon.png') }}">
-        <meta name="theme-color" content="#A48D78">
+        <meta name="theme-color" content="#D4AF37">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-[var(--ink)] antialiased">
-        <div class="flex min-h-screen items-center justify-center px-4 py-8">
-            <div class="theme-card w-full max-w-[448px] overflow-hidden px-8 py-10 sm:px-12">
-                <a href="/">
-                    <img
-                        src="{{ asset('images/martinis-logo.png') }}"
-                        alt="Martinis and Manicures"
-                        class="mx-auto h-auto w-72 max-w-full object-contain"
-                    >
-                </a>
-
-                <div class="mt-8">
+        <div class="auth-stage flex min-h-screen items-center justify-center px-4 py-5 sm:py-8">
+            <div class="w-full max-w-[420px] sm:max-w-[460px] lg:max-w-[500px]">
+                <div class="auth-card px-6 py-7 sm:px-9 sm:py-9 lg:px-12 lg:py-10">
                     {{ $slot }}
                 </div>
 
-                <p class="mt-7 text-center text-xs font-bold text-[var(--muted)]">
+                <p class="mt-5 text-center text-xs font-medium text-[#E8DDAA] sm:mt-6 sm:text-sm">
                     Martinis &amp; Manicures &copy; {{ now()->year }}
                 </p>
             </div>
         </div>
     </body>
 </html>
+

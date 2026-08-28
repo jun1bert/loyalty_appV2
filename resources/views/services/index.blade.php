@@ -3,7 +3,7 @@
     <x-slot name="header">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-                <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-1">
+                <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
                     Service Management
                 </p>
 
@@ -20,8 +20,8 @@
     </x-slot>
 
     @if(session('success'))
-        <div class="mb-5 rounded-lg border border-[#E6DAC8]
-                    bg-[#FAF9F6] px-4 py-3 text-sm text-[#5C4C40]">
+        <div class="mb-5 rounded-lg border border-[#3A321F]
+                    bg-[#0D0D0D] px-4 py-3 text-sm text-[#E8DDAA]">
             {{ session('success') }}
         </div>
     @endif
@@ -63,12 +63,17 @@
 
                 <tbody>
                     @forelse($services as $service)
-                        <tr class="border-t border-[#E6DAC8] hover:bg-[#F4F1EA]/60 transition">
-                            <td class="px-6 py-4 font-medium text-[#493B32]">
-                                {{ $service->name }}
+                        <tr class="border-t border-[#3A321F] hover:bg-[#1A1A1A]/60 transition">
+                            <td class="px-6 py-4 font-medium text-[#F7E7B2]">
+                                <p>{{ $service->name }}</p>
+                                @if($service->is_package)
+                                    <p class="mt-1 text-xs text-[#C9B46B]">
+                                        Package: {{ $service->session_count }} sessions
+                                    </p>
+                                @endif
                             </td>
 
-                            <td class="px-6 py-4 text-[#5C4C40]">
+                            <td class="px-6 py-4 text-[#E8DDAA]">
                                 PHP {{ number_format($service->price, 2) }}
                             </td>
 
@@ -91,12 +96,12 @@
                             <td class="px-6 py-4">
                                 <div class="flex justify-end items-center gap-4">
                                     <a href="{{ route('services.show', $service) }}"
-                                       class="text-[#A48D78] hover:text-[#7C6757] font-medium">
+                                       class="text-[#D4AF37] hover:text-[#F2C94C] font-medium">
                                         View
                                     </a>
 
                                     <a href="{{ route('services.edit', $service) }}"
-                                       class="text-[#A48D78] hover:text-[#7C6757] font-medium">
+                                       class="text-[#D4AF37] hover:text-[#F2C94C] font-medium">
                                         Edit
                                     </a>
 
@@ -117,7 +122,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="px-6 py-12 text-center text-[#8B796A]">
+                            <td colspan="5" class="px-6 py-12 text-center text-[#C9B46B]">
                                 {{ $search !== '' ? 'No services match your search.' : 'No services have been created yet.' }}
                             </td>
                         </tr>
@@ -128,3 +133,4 @@
     </div>
 
 </x-app-layout>
+

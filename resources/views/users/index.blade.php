@@ -4,7 +4,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 
             <div>
-                <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-1">
+                <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
                     Administration
                 </p>
 
@@ -25,8 +25,8 @@
 
 
     @if(session('success'))
-        <div class="mb-5 rounded-lg border border-[#E6DAC8]
-                    bg-[#FAF9F6] px-4 py-3 text-sm text-[#5C4C40]">
+        <div class="mb-5 rounded-lg border border-[#3A321F]
+                    bg-[#0D0D0D] px-4 py-3 text-sm text-[#E8DDAA]">
             {{ session('success') }}
         </div>
     @endif
@@ -77,17 +77,17 @@
 
                     @forelse($users as $user)
 
-                        <tr class="border-t border-[#E6DAC8]
-                                   hover:bg-[#F4F1EA]/60 transition">
+                        <tr class="border-t border-[#3A321F]
+                                   hover:bg-[#1A1A1A]/60 transition">
 
                             <td class="px-6 py-4">
 
-                                <p class="font-medium text-[#493B32]">
+                                <p class="font-medium text-[#F7E7B2]">
                                     {{ $user->name }}
                                 </p>
 
                                 @if(auth()->id() === $user->id)
-                                    <p class="text-xs text-[#A48D78] mt-1">
+                                    <p class="text-xs text-[#D4AF37] mt-1">
                                         Your account
                                     </p>
                                 @endif
@@ -95,7 +95,7 @@
                             </td>
 
 
-                            <td class="px-6 py-4 text-[#5C4C40]">
+                            <td class="px-6 py-4 text-[#E8DDAA]">
                                 {{ $user->email }}
                             </td>
 
@@ -125,7 +125,7 @@
                             </td>
 
 
-                            <td class="px-6 py-4 text-[#5C4C40]">
+                            <td class="px-6 py-4 text-[#E8DDAA]">
                                 {{ $user->created_at?->format('M d, Y') ?? 'Not recorded' }}
                             </td>
 
@@ -136,8 +136,8 @@
 
                                     <a
                                         href="{{ route('users.edit', $user) }}"
-                                        class="text-[#A48D78]
-                                               hover:text-[#7C6757]
+                                        class="text-[#D4AF37]
+                                               hover:text-[#F2C94C]
                                                font-medium"
                                     >
                                         Edit
@@ -176,7 +176,7 @@
                         <tr>
                             <td
                                 colspan="5"
-                                class="px-6 py-12 text-center text-[#8B796A]"
+                                class="px-6 py-12 text-center text-[#C9B46B]"
                             >
                                 No staff accounts found.
                             </td>
@@ -193,3 +193,4 @@
     </div>
 
 </x-app-layout>
+

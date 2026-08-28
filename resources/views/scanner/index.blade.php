@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
                 Loyalty Verification
             </p>
 
@@ -15,8 +15,8 @@
     <div class="max-w-3xl">
 
         @if(session('success'))
-            <div class="mb-5 rounded-lg border border-[#E6DAC8]
-                        bg-[#FAF9F6] px-4 py-3 text-sm text-[#5C4C40]">
+            <div class="mb-5 rounded-lg border border-[#3A321F]
+                        bg-[#0D0D0D] px-4 py-3 text-sm text-[#E8DDAA]">
                 {{ session('success') }}
             </div>
         @endif
@@ -32,15 +32,15 @@
 
             <div class="text-center">
 
-                <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78]">
+                <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
                     Membership Scanner
                 </p>
 
-                <h2 class="font-serif text-2xl text-[#493B32] mt-2">
+                <h2 class="font-serif text-2xl text-[#F7E7B2] mt-2">
                     Scan Customer Loyalty Card
                 </h2>
 
-                <p class="text-sm text-[#8B796A] mt-2">
+                <p class="text-sm text-[#C9B46B] mt-2">
                     Position the customer's QR code inside the camera frame.
                 </p>
 
@@ -52,7 +52,7 @@
 
                 <div
                     id="qr-reader"
-                    class="overflow-hidden rounded-xl border border-[#E6DAC8]">
+                    class="overflow-hidden rounded-xl border border-[#3A321F]">
                 </div>
 
             </div>
@@ -60,7 +60,7 @@
 
             {{-- Status --}}
             <div id="scanner-status"
-                 class="mt-4 text-center text-sm text-[#8B796A]">
+                 class="mt-4 text-center text-sm text-[#C9B46B]">
 
                 Waiting for camera...
 
@@ -85,13 +85,13 @@
 
 
             {{-- Manual fallback --}}
-            <div class="border-t border-[#E6DAC8] mt-8 pt-6">
+            <div class="border-t border-[#3A321F] mt-8 pt-6">
 
-                <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78]">
+                <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
                     Manual Verification
                 </p>
 
-                <p class="text-sm text-[#8B796A] mt-2">
+                <p class="text-sm text-[#C9B46B] mt-2">
                     If the camera is unavailable, you can still enter the QR token manually.
                 </p>
 

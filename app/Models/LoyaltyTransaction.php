@@ -10,10 +10,13 @@ class LoyaltyTransaction extends Model
         'customer_id',
         'loyalty_membership_id',
         'processed_by',
+        'promo_code_id',
+        'promo_code',
         'subtotal',
         'eligible_subtotal',
         'discount_percentage',
         'discount_amount',
+        'promo_discount_amount',
         'total_amount',
         'transaction_date',
     ];
@@ -23,6 +26,7 @@ class LoyaltyTransaction extends Model
         'eligible_subtotal' => 'decimal:2',
         'discount_percentage' => 'decimal:2',
         'discount_amount' => 'decimal:2',
+        'promo_discount_amount' => 'decimal:2',
         'total_amount' => 'decimal:2',
         'transaction_date' => 'datetime',
     ];
@@ -43,6 +47,11 @@ class LoyaltyTransaction extends Model
     public function processedBy()
     {
         return $this->belongsTo(User::class, 'processed_by');
+    }
+
+    public function promoCode()
+    {
+        return $this->belongsTo(PromoCode::class);
     }
 
     public function items()

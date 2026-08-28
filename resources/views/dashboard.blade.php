@@ -3,7 +3,7 @@
     <x-slot name="header">
 
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
                 Overview
             </p>
 
@@ -20,15 +20,15 @@
         {{-- Customers --}}
         <div class="theme-card p-6">
 
-            <p class="text-sm text-[#8B796A]">
+            <p class="text-sm text-[#C9B46B]">
                 Total Customers
             </p>
 
-            <p class="font-serif text-4xl text-[#493B32] mt-3">
-                0
+            <p class="font-serif text-4xl text-[#F7E7B2] mt-3">
+                {{ number_format($totalCustomers) }}
             </p>
 
-            <p class="text-xs text-[#A48D78] mt-2">
+            <p class="text-xs text-[#D4AF37] mt-2">
                 Loyalty customers
             </p>
 
@@ -38,15 +38,15 @@
         {{-- Memberships --}}
         <div class="theme-card p-6">
 
-            <p class="text-sm text-[#8B796A]">
+            <p class="text-sm text-[#C9B46B]">
                 Active Memberships
             </p>
 
-            <p class="font-serif text-4xl text-[#493B32] mt-3">
-                0
+            <p class="font-serif text-4xl text-[#F7E7B2] mt-3">
+                {{ number_format($activeMemberships) }}
             </p>
 
-            <p class="text-xs text-[#A48D78] mt-2">
+            <p class="text-xs text-[#D4AF37] mt-2">
                 Currently active
             </p>
 
@@ -56,15 +56,15 @@
         {{-- Services --}}
         <div class="theme-card p-6">
 
-            <p class="text-sm text-[#8B796A]">
+            <p class="text-sm text-[#C9B46B]">
                 Services
             </p>
 
-            <p class="font-serif text-4xl text-[#493B32] mt-3">
-                {{ \App\Models\Service::where('is_active', true)->count() }}
+            <p class="font-serif text-4xl text-[#F7E7B2] mt-3">
+                {{ number_format($activeServices) }}
             </p>
 
-            <p class="text-xs text-[#A48D78] mt-2">
+            <p class="text-xs text-[#D4AF37] mt-2">
                 Active services
             </p>
 
@@ -74,15 +74,15 @@
         {{-- Discounts --}}
         <div class="theme-card p-6">
 
-            <p class="text-sm text-[#8B796A]">
+            <p class="text-sm text-[#C9B46B]">
                 Discounts Given
             </p>
 
-            <p class="font-serif text-4xl text-[#493B32] mt-3">
-                ₱0
+            <p class="font-serif text-4xl text-[#F7E7B2] mt-3">
+                PHP {{ number_format($discountsThisMonth, 2) }}
             </p>
 
-            <p class="text-xs text-[#A48D78] mt-2">
+            <p class="text-xs text-[#D4AF37] mt-2">
                 This month
             </p>
 
@@ -94,7 +94,7 @@
     {{-- Welcome --}}
     <div class="theme-card mt-6 p-8">
 
-        <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78]">
+        <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
             Martinis & Manicures
         </p>
 
@@ -102,7 +102,7 @@
             Loyalty Management
         </h2>
 
-        <p class="text-sm text-[#7B6B5E] mt-3 max-w-2xl leading-6">
+        <p class="text-sm text-[#C9B46B] mt-3 max-w-2xl leading-6">
             Manage loyalty memberships, customer discounts,
             services and transactions from your dashboard.
         </p>

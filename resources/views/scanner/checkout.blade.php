@@ -1,6 +1,6 @@
 <div class="theme-card mt-6 p-6">
 
-    <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78]">
+    <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
         Confirmation
     </p>
 
@@ -8,20 +8,20 @@
         Complete Loyalty Transaction
     </h3>
 
-    <p class="text-sm text-[#8B796A] mt-2">
+    <p class="text-sm text-[#C9B46B] mt-2">
         Confirming will save this visit, services, prices,
         discount, and staff member to the transaction history.
     </p>
 
-    <div class="mt-5 rounded-xl border border-[#E6DAC8] bg-[#FAF9F6] p-4 text-sm">
+    <div class="mt-5 rounded-xl border border-[#3A321F] bg-[#0D0D0D] p-4 text-sm">
         <div class="flex justify-between gap-4">
-            <span class="text-[#8B796A]">Eligible subtotal</span>
-            <span class="font-medium text-[#493B32]">PHP {{ number_format($eligibleSubtotal, 2) }}</span>
+            <span class="text-[#C9B46B]">Eligible subtotal</span>
+            <span class="font-medium text-[#F7E7B2]">PHP {{ number_format($eligibleSubtotal, 2) }}</span>
         </div>
 
         <div class="mt-2 flex justify-between gap-4">
-            <span class="text-[#8B796A]">Minimum spend</span>
-            <span class="font-medium text-[#493B32]">PHP {{ number_format($minimumSpend, 2) }}</span>
+            <span class="text-[#C9B46B]">Minimum spend</span>
+            <span class="font-medium text-[#F7E7B2]">PHP {{ number_format($minimumSpend, 2) }}</span>
         </div>
 
         @if(!$meetsMinimumSpend)
@@ -29,6 +29,23 @@
                 Discount not applied because eligible services did not reach the minimum spend.
             </p>
         @endif
+
+        <div class="mt-2 flex justify-between gap-4">
+            <span class="text-[#C9B46B]">Loyalty discount</span>
+            <span class="font-medium text-[#D4AF37]">- PHP {{ number_format($discountAmount, 2) }}</span>
+        </div>
+
+        @if($promoCode)
+            <div class="mt-2 flex justify-between gap-4">
+                <span class="text-[#C9B46B]">Promo code {{ $promoCode->code }}</span>
+                <span class="font-medium text-[#D4AF37]">- PHP {{ number_format($promoDiscountAmount, 2) }}</span>
+            </div>
+        @endif
+
+        <div class="mt-4 flex justify-between gap-4 border-t border-[#3A321F] pt-4">
+            <span class="font-semibold text-[#F7E7B2]">Amount due</span>
+            <span class="font-serif text-2xl text-[#F7E7B2]">PHP {{ number_format($total, 2) }}</span>
+        </div>
     </div>
 
     <form
@@ -58,7 +75,25 @@
                     value="{{ number_format($servicePrices[$service->id], 2, '.', '') }}"
                 >
             @endif
+
+            @if($service->is_package)
+                <input
+                    type="hidden"
+                    name="package_modes[{{ $service->id }}]"
+                    value="{{ $packageModes[$service->id] ?? 'purchase' }}"
+                >
+
+                <input
+                    type="hidden"
+                    name="sessions_redeemed[{{ $service->id }}]"
+                    value="{{ $sessionsRedeemed[$service->id] ?? 1 }}"
+                >
+            @endif
         @endforeach
+
+        @if($promoCode)
+            <input type="hidden" name="promo_code" value="{{ $promoCode->code }}">
+        @endif
 
         <div class="flex flex-col sm:flex-row gap-3">
 
@@ -83,3 +118,4 @@
     </form>
 
 </div>
+

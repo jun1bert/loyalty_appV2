@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
                 Customers
             </p>
 
@@ -18,20 +18,21 @@
 
             <form method="POST"
                   action="{{ route('customers.update', $customer) }}"
+                  enctype="multipart/form-data"
                   class="space-y-6">
 
                 @csrf
                 @method('PUT')
 
                 <div>
-                    <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-4">
+                    <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-4">
                         Customer Information
                     </p>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
                         <div>
-                            <label class="block text-sm font-medium text-[#493B32] mb-2">
+                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                                 First Name
                             </label>
 
@@ -51,7 +52,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-[#493B32] mb-2">
+                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                                 Last Name
                             </label>
 
@@ -71,7 +72,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-[#493B32] mb-2">
+                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                                 Mobile Number
                             </label>
 
@@ -90,7 +91,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-[#493B32] mb-2">
+                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                                 Birth Date
                             </label>
 
@@ -108,20 +109,57 @@
                             @enderror
                         </div>
 
+                        <div class="sm:col-span-2">
+                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                                Customer Photo
+                                <span class="text-[#C9B46B] font-normal">(optional)</span>
+                            </label>
+
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                                @if($customer->photo_path)
+                                    <span class="customer-avatar-md">
+                                        <img
+                                            src="{{ Storage::url($customer->photo_path) }}"
+                                            alt="{{ $customer->first_name }} {{ $customer->last_name }}"
+                                        >
+                                    </span>
+                                @endif
+
+                                <div class="flex-1">
+                                    <input
+                                        type="file"
+                                        name="photo"
+                                        accept="image/*"
+                                        class="theme-input file:mr-4 file:rounded-lg file:border-0 file:bg-[#D4AF37] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#0D0D0D]"
+                                    >
+
+                                    <p class="text-xs text-[#C9B46B] mt-2">
+                                        Upload a new photo to replace the current one. Maximum size: 2 MB.
+                                    </p>
+                                </div>
+                            </div>
+
+                            @error('photo')
+                                <p class="text-red-600 text-xs mt-2">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+
                     </div>
                 </div>
 
                 @if($customer->loyaltyMembership)
-                    <div class="rounded-xl bg-[#E6DAC8]/50 p-5">
-                        <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78]">
+                    <div class="rounded-xl bg-[#3A321F]/50 p-5">
+                        <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
                             Membership
                         </p>
 
-                        <p class="font-serif text-xl text-[#493B32] mt-2">
+                        <p class="font-serif text-xl text-[#F7E7B2] mt-2">
                             {{ $customer->loyaltyMembership->membership_code }}
                         </p>
 
-                        <p class="text-sm text-[#6F5E51] mt-2">
+                        <p class="text-sm text-[#D8C98A] mt-2">
                             Membership plan changes are managed separately from customer contact details.
                         </p>
                     </div>
@@ -150,3 +188,4 @@
     </div>
 
 </x-app-layout>
+

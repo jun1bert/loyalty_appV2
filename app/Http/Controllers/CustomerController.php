@@ -8,6 +8,7 @@ use App\Models\LoyaltyMembership;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class CustomerController extends Controller
 {
@@ -53,6 +54,7 @@ class CustomerController extends Controller
             'last_name' => 'required|string|max:255',
             'phone' => 'nullable|string|max:30',
             'birth_date' => 'nullable|date|before:today',
+            'photo' => 'nullable|image|max:2048',
             'loyalty_plan_id' => 'required|exists:loyalty_plans,id',
         ]);
 
@@ -60,13 +62,16 @@ class CustomerController extends Controller
             ->where('is_active', true)
             ->firstOrFail();
 
-        DB::transaction(function () use ($validated, $plan) {
+        DB::transaction(function () use ($request, $validated, $plan) {
 
             $customer = Customer::create([
                 'first_name' => $validated['first_name'],
                 'last_name' => $validated['last_name'],
                 'phone' => $validated['phone'] ?? null,
                 'birth_date' => $validated['birth_date'] ?? null,
+                'photo_path' => $request->hasFile('photo')
+                    ? $request->file('photo')->store('customer-photos', 'public')
+                    : null,
             ]);
 
             $activatedAt = now();
@@ -113,7 +118,18 @@ class CustomerController extends Controller
             'last_name' => 'required|string|max:255',
             'phone' => 'nullable|string|max:30',
             'birth_date' => 'nullable|date|before:today',
+            'photo' => 'nullable|image|max:2048',
         ]);
+
+        if ($request->hasFile('photo')) {
+            if ($customer->photo_path) {
+                Storage::disk('public')->delete($customer->photo_path);
+            }
+
+            $validated['photo_path'] = $request->file('photo')->store('customer-photos', 'public');
+        }
+
+        unset($validated['photo']);
 
         $customer->update($validated);
 
@@ -124,6 +140,10 @@ class CustomerController extends Controller
 
     public function destroy(Customer $customer)
     {
+        if ($customer->photo_path) {
+            Storage::disk('public')->delete($customer->photo_path);
+        }
+
         $customer->delete();
 
         return redirect()

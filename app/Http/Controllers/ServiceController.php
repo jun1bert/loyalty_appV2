@@ -31,6 +31,8 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
+            'is_package' => 'nullable|boolean',
+            'session_count' => 'nullable|required_if:is_package,1|integer|min:2',
             'discount_eligible' => 'nullable|boolean',
             'is_active' => 'nullable|boolean',
         ]);
@@ -38,6 +40,10 @@ class ServiceController extends Controller
         Service::create([
             'name' => $validated['name'],
             'price' => $validated['price'],
+            'is_package' => $request->boolean('is_package'),
+            'session_count' => $request->boolean('is_package')
+                ? $validated['session_count']
+                : null,
             'discount_eligible' => $request->boolean('discount_eligible'),
             'is_active' => $request->boolean('is_active'),
         ]);
@@ -62,6 +68,8 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
+            'is_package' => 'nullable|boolean',
+            'session_count' => 'nullable|required_if:is_package,1|integer|min:2',
             'discount_eligible' => 'nullable|boolean',
             'is_active' => 'nullable|boolean',
         ]);
@@ -69,6 +77,10 @@ class ServiceController extends Controller
         $service->update([
             'name' => $validated['name'],
             'price' => $validated['price'],
+            'is_package' => $request->boolean('is_package'),
+            'session_count' => $request->boolean('is_package')
+                ? $validated['session_count']
+                : null,
             'discount_eligible' => $request->boolean('discount_eligible'),
             'is_active' => $request->boolean('is_active'),
         ]);

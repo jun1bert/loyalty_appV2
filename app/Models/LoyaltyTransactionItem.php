@@ -11,6 +11,9 @@ class LoyaltyTransactionItem extends Model
         'service_id',
         'service_name',
         'original_price',
+        'session_count',
+        'sessions_redeemed',
+        'is_package_redemption',
         'discount_eligible',
         'discount_amount',
         'final_price',
@@ -18,6 +21,9 @@ class LoyaltyTransactionItem extends Model
 
     protected $casts = [
         'original_price' => 'decimal:2',
+        'session_count' => 'integer',
+        'sessions_redeemed' => 'integer',
+        'is_package_redemption' => 'boolean',
         'discount_eligible' => 'boolean',
         'discount_amount' => 'decimal:2',
         'final_price' => 'decimal:2',

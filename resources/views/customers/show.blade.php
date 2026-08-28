@@ -6,7 +6,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
                 Customer Profile
             </p>
 
@@ -26,38 +26,63 @@
         {{-- CUSTOMER INFO --}}
         <div class="theme-card p-6">
 
-            <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78]">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
                 Customer Information
             </p>
+
+            <div class="mt-5 flex items-center gap-4">
+                @if($customer->photo_path)
+                    <span class="customer-avatar-lg">
+                        <img
+                            src="{{ Storage::url($customer->photo_path) }}"
+                            alt="{{ $customer->first_name }} {{ $customer->last_name }}"
+                        >
+                    </span>
+                @else
+                    <div class="customer-avatar-lg">
+                        {{ strtoupper(substr($customer->first_name, 0, 1) . substr($customer->last_name, 0, 1)) }}
+                    </div>
+                @endif
+
+                <div class="min-w-0">
+                    <p class="font-medium text-[#F7E7B2]">
+                        {{ $customer->first_name }} {{ $customer->last_name }}
+                    </p>
+
+                    <p class="text-xs text-[#C9B46B] mt-1">
+                        {{ $customer->photo_path ? 'Photo on file' : 'No photo uploaded' }}
+                    </p>
+                </div>
+            </div>
 
             <div class="mt-5 space-y-4">
 
                 <div>
-                    <p class="text-xs text-[#8B796A]">
+                    <p class="text-xs text-[#C9B46B]">
                         Full Name
                     </p>
 
-                    <p class="font-medium text-[#493B32] mt-1">
+                    <p class="font-medium text-[#F7E7B2] mt-1">
                         {{ $customer->first_name }} {{ $customer->last_name }}
                     </p>
                 </div>
 
                 <div>
-                    <p class="text-xs text-[#8B796A]">
+                    <p class="text-xs text-[#C9B46B]">
                         Mobile Number
                     </p>
 
-                    <p class="font-medium text-[#493B32] mt-1">
+                    <p class="font-medium text-[#F7E7B2] mt-1">
                         {{ $customer->phone ?: 'Not provided' }}
                     </p>
                 </div>
 
                 <div>
-                    <p class="text-xs text-[#8B796A]">
+                    <p class="text-xs text-[#C9B46B]">
                         Birth Date
                     </p>
 
-                    <p class="font-medium text-[#493B32] mt-1">
+                    <p class="font-medium text-[#F7E7B2] mt-1">
                         {{ $customer->birth_date
                             ? \Carbon\Carbon::parse($customer->birth_date)->format('M d, Y')
                             : 'Not provided' }}
@@ -82,9 +107,9 @@
 
             @if($membership)
 
-                <div class="relative overflow-hidden rounded-2xl
-                            bg-[#A48D78] text-[#FAF9F6]
-                            shadow-sm p-7 sm:p-9">
+                <div class="premium-card rounded-2xl
+                            text-[#F7E7B2]
+                            p-7 sm:p-9">
 
                     {{-- Decorative circles --}}
                     <div class="absolute -right-16 -top-16 w-48 h-48
@@ -103,12 +128,11 @@
 
                             <div>
 
-                                <p class="text-[10px] uppercase
-                                          tracking-[0.35em] text-white/70">
+                                <p class="premium-eyebrow">
                                     Martinis & Manicures
                                 </p>
 
-                                <h2 class="text-3xl text-white mt-2">
+                                <h2 class="gold-foil-text text-3xl mt-2">
                                     Loyalty Member
                                 </h2>
 
@@ -117,7 +141,7 @@
                             @if($membership->status === 'active')
 
                                 <span class="self-start rounded-full
-                                             bg-[#FAF9F6] text-[#6A5849]
+                                             border border-[#D4AF37]/50 bg-black/60 text-[#F7E7B2]
                                              px-4 py-1.5 text-xs font-semibold">
                                     ACTIVE
                                 </span>
@@ -125,7 +149,7 @@
                             @else
 
                                 <span class="self-start rounded-full
-                                             bg-white/20 text-white
+                                             bg-white/20 text-[#F7E7B2]
                                              px-4 py-1.5 text-xs font-semibold">
                                     {{ strtoupper($membership->status) }}
                                 </span>
@@ -137,7 +161,7 @@
 
                         <div class="mt-10">
 
-                            <p class="text-sm text-white/70">
+                            <p class="text-sm text-[#C9B46B]">
                                 Member
                             </p>
 
@@ -152,7 +176,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-8">
 
                             <div>
-                                <p class="text-xs text-white/60">
+                                <p class="text-xs text-[#C9B46B]">
                                     Membership No.
                                 </p>
 
@@ -163,7 +187,7 @@
 
 
                             <div>
-                                <p class="text-xs text-white/60">
+                                <p class="text-xs text-[#C9B46B]">
                                     Member Discount
                                 </p>
 
@@ -174,7 +198,7 @@
 
 
                             <div>
-                                <p class="text-xs text-white/60">
+                                <p class="text-xs text-[#C9B46B]">
                                     Valid Until
                                 </p>
 
@@ -198,7 +222,7 @@
                     <div class="flex items-center justify-between gap-4">
 
                         <div>
-                            <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78]">
+                            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
                                 Membership Details
                             </p>
 
@@ -214,31 +238,31 @@
                                 gap-5 mt-6">
 
                         <div>
-                            <p class="text-xs text-[#8B796A]">
+                            <p class="text-xs text-[#C9B46B]">
                                 Card Price
                             </p>
 
-                            <p class="font-medium text-[#493B32] mt-1">
+                            <p class="font-medium text-[#F7E7B2] mt-1">
                                 ₱{{ number_format($plan?->price ?? 0, 2) }}
                             </p>
                         </div>
 
                         <div>
-                            <p class="text-xs text-[#8B796A]">
+                            <p class="text-xs text-[#C9B46B]">
                                 Discount
                             </p>
 
-                            <p class="font-medium text-[#493B32] mt-1">
+                            <p class="font-medium text-[#F7E7B2] mt-1">
                                 {{ number_format($plan?->discount_percentage ?? 0, 0) }}%
                             </p>
                         </div>
 
                         <div>
-                            <p class="text-xs text-[#8B796A]">
+                            <p class="text-xs text-[#C9B46B]">
                                 Activated
                             </p>
 
-                            <p class="font-medium text-[#493B32] mt-1">
+                            <p class="font-medium text-[#F7E7B2] mt-1">
                                 {{ $membership->activated_at
                                     ? $membership->activated_at->format('M d, Y')
                                     : '—' }}
@@ -246,11 +270,11 @@
                         </div>
 
                         <div>
-                            <p class="text-xs text-[#8B796A]">
+                            <p class="text-xs text-[#C9B46B]">
                                 Validity
                             </p>
 
-                            <p class="font-medium text-[#493B32] mt-1">
+                            <p class="font-medium text-[#F7E7B2] mt-1">
                                 {{ $plan?->validity_months ?? '—' }}
                                 {{ ($plan?->validity_months ?? 0) == 1 ? 'month' : 'months' }}
                             </p>
@@ -264,7 +288,7 @@
                 {{-- QR PLACEHOLDER --}}
                 <div class="theme-card p-6 mt-6">
 
-                    <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78]">
+                    <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
                         Membership QR
                     </p>
 
@@ -274,16 +298,16 @@
 
                     <div class="mt-6 flex flex-col items-center">
 
-                        <div class="bg-white p-5 rounded-xl border border-[#E6DAC8]">
+                        <div class="bg-white p-5 rounded-xl border border-[#3A321F]">
                             {!! QrCode::size(220)->generate($membership->qr_token) !!}
                         </div>
 
-                        <p class="text-sm text-[#8B796A] mt-4 text-center max-w-md">
+                        <p class="text-sm text-[#C9B46B] mt-4 text-center max-w-md">
                             Staff can scan this QR code to verify the customer's membership
                             and apply the loyalty discount.
                         </p>
 
-                        <p class="text-xs text-[#A48D78] mt-2">
+                        <p class="text-xs text-[#D4AF37] mt-2">
                             {{ $membership->membership_code }}
                         </p>
 
@@ -299,7 +323,7 @@
                         No Loyalty Membership
                     </h2>
 
-                    <p class="text-sm text-[#8B796A] mt-2">
+                    <p class="text-sm text-[#C9B46B] mt-2">
                         This customer does not currently have a loyalty membership.
                     </p>
 
@@ -316,10 +340,11 @@
 
         <a
             href="{{ route('customers.index') }}"
-            class="text-sm text-[#A48D78] hover:text-[#7C6757]">
+            class="text-sm text-[#D4AF37] hover:text-[#F2C94C]">
             ← Back to Customers
         </a>
 
     </div>
 
 </x-app-layout>
+

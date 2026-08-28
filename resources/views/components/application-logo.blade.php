@@ -3,3 +3,4 @@
     alt="Martinis and Manicures"
     {{ $attributes->merge(['class' => 'object-contain']) }}
 >
+

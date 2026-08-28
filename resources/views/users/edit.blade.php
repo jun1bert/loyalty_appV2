@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
                 User Management
             </p>
 
@@ -37,7 +37,7 @@
 
                 <div>
 
-                    <label class="block text-sm font-medium text-[#493B32] mb-2">
+                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                         Full Name
                     </label>
 
@@ -60,7 +60,7 @@
 
                 <div>
 
-                    <label class="block text-sm font-medium text-[#493B32] mb-2">
+                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                         Email
                     </label>
 
@@ -83,7 +83,7 @@
 
                 <div>
 
-                    <label class="block text-sm font-medium text-[#493B32] mb-2">
+                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                         Role
                     </label>
 
@@ -116,7 +116,7 @@
 
                     </select>
 
-                    <p class="text-xs text-[#8B796A] mt-2">
+                    <p class="text-xs text-[#C9B46B] mt-2">
                         Staff can only use the QR scanner.
                         Management can manage services, loyalty plans,
                         customers, QR scanning and transactions.
@@ -131,13 +131,13 @@
                 </div>
 
 
-                <div class="border-t border-[#E6DAC8] pt-6">
+                <div class="border-t border-[#3A321F] pt-6">
 
-                    <p class="text-xs uppercase tracking-[0.2em] text-[#A48D78] mb-1">
+                    <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
                         Password
                     </p>
 
-                    <p class="text-sm text-[#8B796A] mb-5">
+                    <p class="text-sm text-[#C9B46B] mb-5">
                         Leave these fields empty if you do not want to change the password.
                     </p>
 
@@ -146,7 +146,7 @@
 
                         <div>
 
-                            <label class="block text-sm font-medium text-[#493B32] mb-2">
+                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                                 New Password
                             </label>
 
@@ -167,7 +167,7 @@
 
                         <div>
 
-                            <label class="block text-sm font-medium text-[#493B32] mb-2">
+                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
                                 Confirm New Password
                             </label>
 
@@ -186,14 +186,14 @@
 
                 @if(auth()->id() === $user->id)
 
-                    <div class="rounded-xl border border-[#E6DAC8]
-                                bg-[#F4F1EA] p-4">
+                    <div class="rounded-xl border border-[#3A321F]
+                                bg-[#1A1A1A] p-4">
 
-                        <p class="text-sm font-medium text-[#493B32]">
+                        <p class="text-sm font-medium text-[#F7E7B2]">
                             This is your account
                         </p>
 
-                        <p class="text-xs text-[#8B796A] mt-1">
+                        <p class="text-xs text-[#C9B46B] mt-1">
                             The system will prevent you from removing your own administrator role.
                         </p>
 

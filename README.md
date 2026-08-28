@@ -24,6 +24,7 @@ SERVICES_DB_TABLE=services
 SERVICES_DB_NAME_COLUMN=name
 SERVICES_DB_PRICE_COLUMN=price
 SERVICES_DB_ACTIVE_COLUMN=is_active
+SERVICES_DB_SESSION_COUNT_COLUMN=session_count
 ```
 
 Then run:
@@ -34,7 +35,7 @@ php artisan services:sync-external --dry-run
 php artisan services:sync-external
 ```
 
-The sync updates local service names/prices/status by service name. New services are marked loyalty-discount eligible by default; existing `discount_eligible` choices are preserved.
+The sync updates local service names/prices/status by service name. If `SERVICES_DB_SESSION_COUNT_COLUMN` exists and is greater than 1, the local service is marked as a multi-session package and its session count is imported. New services are marked loyalty-discount eligible by default; existing `discount_eligible` choices are preserved.
 
 ## About Laravel
 
