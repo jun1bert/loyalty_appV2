@@ -11,6 +11,14 @@ class DashboardController extends Controller
 {
     public function __invoke()
     {
+        if (auth()->user()->hasRole('customer')) {
+            return redirect()->route('customer.portal');
+        }
+
+        if (auth()->user()->isStaff()) {
+            return redirect()->route('scanner.index');
+        }
+
         return view('dashboard', [
             'totalCustomers' => Customer::count(),
             'activeMemberships' => LoyaltyMembership::where('status', 'active')->count(),

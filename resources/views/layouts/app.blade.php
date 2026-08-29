@@ -62,7 +62,7 @@
             >
 
                 <a
-                    href="{{ Auth::user()->isStaff() ? route('scanner.index') : route('dashboard') }}"
+                    href="{{ Auth::user()->hasRole('customer') ? route('customer.portal') : (Auth::user()->isStaff() ? route('scanner.index') : route('dashboard')) }}"
                     class="brand-plaque flex min-h-20 items-center justify-center rounded-2xl border px-3 py-3 text-center"
                 >
                     <img
@@ -91,6 +91,7 @@
                         'transactions' => '<path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1Z"/><path d="M8 7h8"/><path d="M8 12h8"/><path d="M8 17h5"/>',
                         'scanner' => '<path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 7h3v3H7z"/><path d="M14 7h3v3h-3z"/><path d="M7 14h3v3H7z"/><path d="M14 14h1"/><path d="M17 14h1"/><path d="M14 17h4"/>',
                         'users' => '<path d="M18 21a6 6 0 0 0-12 0"/><circle cx="12" cy="11" r="4"/><path d="M19 8v6"/><path d="M22 11h-6"/>',
+                        'profile' => '<path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="7" r="4"/>',
                     ];
 
                     return '<svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $icons[$name] . '</svg>';
@@ -321,6 +322,45 @@
                 @endif
 
 
+                @if(Auth::user()->hasRole('customer'))
+
+                    <div class="pb-2 px-4">
+
+                        <p
+                            class="text-[10px]
+                                   uppercase
+                                   tracking-[0.2em]
+                                   text-[var(--muted)]"
+                        >
+                            Account
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="{{ route('customer.portal') }}"
+                        class="flex items-center gap-3
+                               rounded-lg
+                               px-4 py-3
+                               text-sm font-semibold
+                               transition
+
+                        {{ request()->routeIs('customer.portal')
+                            ? 'sidebar-link-active'
+                            : 'sidebar-link' }}"
+                    >
+
+                        {!! $sidebarIcon('profile') !!}
+
+                        <span>
+                            My Profile
+                        </span>
+
+                    </a>
+
+                @endif
+
+
                 @if(Auth::user()->isStaff())
 
                     <div class="pb-2 px-4">
@@ -339,26 +379,30 @@
                 @endif
 
 
-                <a
-                    href="{{ route('scanner.index') }}"
-                    class="flex items-center gap-3
-                           rounded-lg
-                           px-4 py-3
-                           text-sm font-semibold
-                           transition
+                @if(Auth::user()->hasRole('admin', 'management', 'staff'))
 
-                    {{ request()->routeIs('scanner.*')
-                        ? 'sidebar-link-active'
-                        : 'sidebar-link' }}"
-                >
+                    <a
+                        href="{{ route('scanner.index') }}"
+                        class="flex items-center gap-3
+                               rounded-lg
+                               px-4 py-3
+                               text-sm font-semibold
+                               transition
 
-                    {!! $sidebarIcon('scanner') !!}
+                        {{ request()->routeIs('scanner.*')
+                            ? 'sidebar-link-active'
+                            : 'sidebar-link' }}"
+                    >
 
-                    <span>
-                        QR Scanner
-                    </span>
+                        {!! $sidebarIcon('scanner') !!}
 
-                </a>
+                        <span>
+                            QR Scanner
+                        </span>
+
+                    </a>
+
+                @endif
 
 
                 {{-- ================================================= --}}
@@ -453,7 +497,7 @@
                                 Management
                             </span>
 
-                        @else
+                        @elseif(Auth::user()->isStaff())
 
                             <span
                                 class="inline-flex
@@ -467,6 +511,22 @@
                                        text-[#F7E7B2]"
                             >
                                 Staff
+                            </span>
+
+                        @else
+
+                            <span
+                                class="inline-flex
+                                       rounded-full
+                                       bg-[#D4AF37]/18
+                                       px-2 py-1
+                                       text-[9px]
+                                       font-semibold
+                                       uppercase
+                                       tracking-[0.15em]
+                                       text-[#F7E7B2]"
+                            >
+                                Customer
                             </span>
 
                         @endif
@@ -585,7 +645,11 @@
                            text-[#D4AF37]"
                 >
 
-                    @if(Auth::user()->isStaff())
+                    @if(Auth::user()->hasRole('customer'))
+
+                        Customer Account
+
+                    @elseif(Auth::user()->isStaff())
 
                         Loyalty Scanner
 

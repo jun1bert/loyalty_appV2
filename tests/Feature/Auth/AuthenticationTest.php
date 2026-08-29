@@ -8,8 +8,22 @@ test('login screen can be rendered', function () {
     $response->assertStatus(200);
 });
 
-test('users can authenticate using the login screen', function () {
+test('customers authenticate to their account page', function () {
     $user = User::factory()->create();
+
+    $response = $this->post('/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
+
+    $this->assertAuthenticated();
+    $response->assertRedirect(route('customer.portal', absolute: false));
+});
+
+test('admins authenticate to the dashboard', function () {
+    $user = User::factory()->create([
+        'role' => 'admin',
+    ]);
 
     $response = $this->post('/login', [
         'email' => $user->email,

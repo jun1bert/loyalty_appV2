@@ -31,9 +31,14 @@ Route::middleware('auth:sanctum')->group(function () {
         'membership'
     ]);
 
+    Route::post('/customer/profile', [
+        CustomerAuthController::class,
+        'updateProfile'
+    ]);
+
     Route::get('/customer/transactions', [
-    CustomerAuthController::class,
-    'transactions'
-]);
+        CustomerAuthController::class,
+        'transactions'
+    ]);
 
 });

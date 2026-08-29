@@ -11,6 +11,7 @@ use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\LoyaltyTransactionController;
 use App\Http\Controllers\PromoCodeController;
+use App\Http\Controllers\CustomerPortalController;
 
 
 Route::get('/', function () {
@@ -21,6 +22,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', DashboardController::class)
         ->middleware('verified')
         ->name('dashboard');
+
+    Route::get('/my-account', [CustomerPortalController::class, 'show'])
+        ->middleware('role:customer')
+        ->name('customer.portal');
+
+    Route::patch('/my-account', [CustomerPortalController::class, 'update'])
+        ->middleware('role:customer')
+        ->name('customer.portal.update');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

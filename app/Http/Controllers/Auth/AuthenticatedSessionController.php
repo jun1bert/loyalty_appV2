@@ -28,6 +28,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if ($request->user()->hasRole('customer')) {
+            return redirect()->route('customer.portal');
+        }
+
+        if ($request->user()->isStaff()) {
+            return redirect()->intended(route('scanner.index', absolute: false));
+        }
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

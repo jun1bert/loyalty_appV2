@@ -8,11 +8,19 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use App\Models\LoyaltyTransaction;
 
 class CustomerAuthController extends Controller
 {
+    private function customerPhotoUrl($customer): ?string
+    {
+        return $customer->photo_path
+            ? url(Storage::url($customer->photo_path))
+            : null;
+    }
+
     public function activate(Request $request)
     {
         $validated = $request->validate([
@@ -20,6 +28,7 @@ class CustomerAuthController extends Controller
             'phone' => 'required|string',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
+            'photo' => 'nullable|image|max:2048',
         ]);
 
         $membership = LoyaltyMembership::with('customer')
@@ -67,21 +76,39 @@ class CustomerAuthController extends Controller
             ], 409);
         }
 
-        $user = DB::transaction(function () use ($validated, $customer) {
+        $photoPath = $request->hasFile('photo')
+            ? $request->file('photo')->store('customer-photos', 'public')
+            : null;
 
-            $user = User::create([
-                'name' => $customer->first_name . ' ' . $customer->last_name,
-                'email' => $validated['email'],
-                'password' => Hash::make($validated['password']),
-                'role' => 'customer',
-            ]);
+        try {
+            $user = DB::transaction(function () use ($validated, $customer, $photoPath) {
 
-            $customer->update([
-                'user_id' => $user->id,
-            ]);
+                $user = User::create([
+                    'name' => $customer->first_name . ' ' . $customer->last_name,
+                    'email' => $validated['email'],
+                    'password' => Hash::make($validated['password']),
+                    'role' => 'customer',
+                ]);
 
-            return $user;
-        });
+                $updates = [
+                    'user_id' => $user->id,
+                ];
+
+                if ($photoPath) {
+                    $updates['photo_path'] = $photoPath;
+                }
+
+                $customer->update($updates);
+
+                return $user;
+            });
+        } catch (\Throwable $e) {
+            if ($photoPath) {
+                Storage::disk('public')->delete($photoPath);
+            }
+
+            throw $e;
+        }
 
         $token = $user->createToken('customer-mobile')->plainTextToken;
 
@@ -168,6 +195,7 @@ class CustomerAuthController extends Controller
             'first_name' => $customer->first_name,
             'last_name' => $customer->last_name,
             'phone' => $customer->phone,
+            'photo_url' => $this->customerPhotoUrl($customer),
         ],
 
         'membership' => [
@@ -181,7 +209,74 @@ class CustomerAuthController extends Controller
                 'name' => $membership->loyaltyPlan?->name,
                 'discount_percentage' =>
                     $membership->loyaltyPlan?->discount_percentage,
+                'minimum_spend' =>
+                    $membership->loyaltyPlan?->minimum_spend,
             ],
+        ],
+    ]);
+}
+
+public function updateProfile(Request $request)
+{
+    $user = $request->user();
+
+    if ($user->role !== 'customer') {
+        return response()->json([
+            'message' => 'Unauthorized.',
+        ], 403);
+    }
+
+    $customer = $user->customer;
+
+    if (!$customer) {
+        return response()->json([
+            'message' => 'Customer profile not found.',
+        ], 404);
+    }
+
+    $validated = $request->validate([
+        'first_name' => 'required|string|max:255',
+        'last_name' => 'required|string|max:255',
+        'phone' => 'required|string|max:255',
+        'photo' => 'nullable|image|max:2048',
+    ]);
+
+    $oldPhotoPath = $customer->photo_path;
+    $newPhotoPath = null;
+
+    if ($request->hasFile('photo')) {
+        $newPhotoPath = $request->file('photo')->store('customer-photos', 'public');
+        $validated['photo_path'] = $newPhotoPath;
+    }
+
+    unset($validated['photo']);
+
+    try {
+        $customer->update($validated);
+
+        $user->update([
+            'name' => $customer->first_name . ' ' . $customer->last_name,
+        ]);
+    } catch (\Throwable $e) {
+        if ($newPhotoPath) {
+            Storage::disk('public')->delete($newPhotoPath);
+        }
+
+        throw $e;
+    }
+
+    if ($newPhotoPath && $oldPhotoPath) {
+        Storage::disk('public')->delete($oldPhotoPath);
+    }
+
+    return response()->json([
+        'message' => 'Profile updated successfully.',
+        'customer' => [
+            'id' => $customer->id,
+            'first_name' => $customer->first_name,
+            'last_name' => $customer->last_name,
+            'phone' => $customer->phone,
+            'photo_url' => $this->customerPhotoUrl($customer),
         ],
     ]);
 }
@@ -229,6 +324,12 @@ public function transactions(Request $request)
                 'discount_amount' =>
                     $transaction->discount_amount,
 
+                'promo_code' =>
+                    $transaction->promo_code,
+
+                'promo_discount_amount' =>
+                    $transaction->promo_discount_amount,
+
                 'total_amount' =>
                     $transaction->total_amount,
 
@@ -239,6 +340,15 @@ public function transactions(Request $request)
 
                         'original_price' =>
                             $item->original_price,
+
+                        'session_count' =>
+                            $item->session_count,
+
+                        'sessions_redeemed' =>
+                            $item->sessions_redeemed,
+
+                        'is_package_redemption' =>
+                            $item->is_package_redemption,
 
                         'discount_eligible' =>
                             $item->discount_eligible,
