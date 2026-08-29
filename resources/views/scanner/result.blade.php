@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-1">
                 Loyalty Verification
             </p>
 
@@ -19,7 +19,7 @@
 
     <div class="max-w-4xl">
 
-        <div class="premium-card rounded-2xl p-7 text-[#F7E7B2] sm:p-8">
+        <div class="premium-card rounded-2xl p-7 text-[#F6F0E8] sm:p-8">
             <div class="relative flex flex-col sm:flex-row sm:justify-between gap-5">
                 <div>
                     <p class="premium-eyebrow">
@@ -31,8 +31,8 @@
                     </h2>
                 </div>
 
-                <span class="self-start rounded-full border border-[#D4AF37]/50 bg-black/60
-                             text-[#F7E7B2] px-4 py-1.5
+                <span class="self-start rounded-full border border-[#C7AD8A]/50 bg-black/60
+                             text-[#F6F0E8] px-4 py-1.5
                              text-xs font-semibold shadow-lg shadow-black/30">
                     ACTIVE
                 </span>
@@ -53,7 +53,7 @@
                 @endif
 
                 <div>
-                    <p class="text-sm text-[#C9B46B]">
+                    <p class="text-sm text-[#B9A68F]">
                         Customer
                     </p>
 
@@ -64,9 +64,9 @@
                 </div>
             </div>
 
-            <div class="relative grid grid-cols-1 sm:grid-cols-3 gap-5 mt-8 border-t border-[#D4AF37]/20 pt-6">
+            <div class="relative grid grid-cols-1 sm:grid-cols-3 gap-5 mt-8 border-t border-[#C7AD8A]/20 pt-6">
                 <div>
-                    <p class="text-xs text-[#C9B46B]">
+                    <p class="text-xs text-[#B9A68F]">
                         Membership
                     </p>
 
@@ -76,7 +76,7 @@
                 </div>
 
                 <div>
-                    <p class="text-xs text-[#C9B46B]">
+                    <p class="text-xs text-[#B9A68F]">
                         Discount
                     </p>
 
@@ -86,7 +86,7 @@
                 </div>
 
                 <div>
-                    <p class="text-xs text-[#C9B46B]">
+                    <p class="text-xs text-[#B9A68F]">
                         Valid Until
                     </p>
 
@@ -101,21 +101,27 @@
 
         <div class="theme-card mt-6 p-6 sm:p-8">
             <div class="mb-6">
-                <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
+                <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A]">
                     Services
                 </p>
 
-                <h3 class="font-serif text-2xl text-[#F7E7B2] mt-1">
+                <h3 class="font-serif text-2xl text-[#F6F0E8] mt-1">
                     Select Customer Services
                 </h3>
 
-                <p class="text-sm text-[#C9B46B] mt-2">
+                <p class="text-sm text-[#B9A68F] mt-2">
                     Select all services received during this visit.
                     Variable-price services require the actual amount before checkout.
                 </p>
             </div>
 
-            <form method="POST" action="{{ route('scanner.calculate') }}">
+            <form
+                method="POST"
+                action="{{ route('scanner.calculate') }}"
+                x-data="{ selectedCount: 0 }"
+                x-init="selectedCount = $el.querySelectorAll('input[name=&quot;services[]&quot;]:checked').length"
+                @change="selectedCount = $el.querySelectorAll('input[name=&quot;services[]&quot;]:checked').length"
+            >
                 @csrf
 
                 <input type="hidden" name="membership_id" value="{{ $membership->id }}">
@@ -124,8 +130,8 @@
                     @forelse($services as $service)
                         <label
                             class="flex flex-col gap-4 rounded-xl border border-[#3A321F]
-                                   bg-[#0D0D0D] p-4 sm:p-5 cursor-pointer
-                                   hover:border-[#B8860B] hover:bg-[#1A1A1A]
+                                   bg-[#080808] p-4 sm:p-5 cursor-pointer
+                                   hover:border-[#8B765B] hover:bg-[#151515]
                                    transition">
 
                             <div class="flex items-center justify-between gap-5">
@@ -134,27 +140,27 @@
                                         type="checkbox"
                                         name="services[]"
                                         value="{{ $service->id }}"
-                                        class="h-5 w-5 rounded border-[#B8860B]
-                                               text-[#D4AF37] focus:ring-[#D4AF37]"
+                                        class="h-5 w-5 rounded border-[#8B765B]
+                                               text-[#C7AD8A] focus:ring-[#C7AD8A]"
                                     >
 
                                     <div>
-                                        <p class="font-medium text-[#F7E7B2]">
+                                        <p class="font-medium text-[#F6F0E8]">
                                             {{ $service->name }}
                                         </p>
 
                                         @if($service->discount_eligible)
-                                            <p class="text-xs text-[#D4AF37] mt-1">
+                                            <p class="text-xs text-[#C7AD8A] mt-1">
                                                 Counts toward minimum spend
                                             </p>
                                         @else
-                                            <p class="text-xs text-[#C9B46B] mt-1">
+                                            <p class="text-xs text-[#B9A68F] mt-1">
                                                 Not eligible for loyalty discount
                                             </p>
                                         @endif
 
                                         @if($service->is_package)
-                                            <p class="text-xs text-[#C9B46B] mt-1">
+                                            <p class="text-xs text-[#B9A68F] mt-1">
                                                 Package: {{ $service->session_count }} sessions
                                             </p>
                                         @endif
@@ -162,7 +168,7 @@
                                 </div>
 
                                 <div class="text-right">
-                                    <p class="font-semibold text-[#F7E7B2] whitespace-nowrap">
+                                    <p class="font-semibold text-[#F6F0E8] whitespace-nowrap">
                                         @if((float) $service->price > 0)
                                             PHP {{ number_format($service->price, 2) }}
                                         @else
@@ -171,7 +177,7 @@
                                     </p>
 
                                     @if($service->discount_eligible)
-                                        <p class="text-xs text-[#D4AF37] mt-1">
+                                        <p class="text-xs text-[#C7AD8A] mt-1">
                                             -{{ number_format($plan->discount_percentage, 0) }}%
                                         </p>
                                     @endif
@@ -183,7 +189,7 @@
                                     <div>
                                         <label
                                             for="package_mode_{{ $service->id }}"
-                                            class="block text-xs font-semibold uppercase tracking-[0.14em] text-[#C9B46B]">
+                                            class="block text-xs font-semibold uppercase tracking-[0.14em] text-[#B9A68F]">
                                             Package Use
                                         </label>
 
@@ -203,7 +209,7 @@
                                     <div>
                                         <label
                                             for="sessions_redeemed_{{ $service->id }}"
-                                            class="block text-xs font-semibold uppercase tracking-[0.14em] text-[#C9B46B]">
+                                            class="block text-xs font-semibold uppercase tracking-[0.14em] text-[#B9A68F]">
                                             Sessions Used
                                         </label>
 
@@ -225,7 +231,7 @@
                                 <div class="sm:ml-9">
                                     <label
                                         for="custom_price_{{ $service->id }}"
-                                        class="block text-xs font-semibold uppercase tracking-[0.14em] text-[#C9B46B]">
+                                        class="block text-xs font-semibold uppercase tracking-[0.14em] text-[#B9A68F]">
                                         Actual Price
                                     </label>
 
@@ -237,17 +243,17 @@
                                         min="0"
                                         step="0.01"
                                         placeholder="0.00"
-                                        class="mt-2 w-full sm:max-w-xs rounded-lg border-[#D4AF37]/40
-                                               bg-black/40 text-[#F7E7B2]
-                                               focus:border-[#D4AF37]
-                                               focus:ring-[#D4AF37]"
+                                        class="mt-2 w-full sm:max-w-xs rounded-lg border-[#C7AD8A]/40
+                                               bg-black/40 text-[#F6F0E8]
+                                               focus:border-[#C7AD8A]
+                                               focus:ring-[#C7AD8A]"
                                     >
                                 </div>
                             @endif
                         </label>
                     @empty
-                        <div class="rounded-xl bg-[#1A1A1A] p-8 text-center">
-                            <p class="text-[#C9B46B]">
+                        <div class="rounded-xl bg-[#151515] p-8 text-center">
+                            <p class="text-[#B9A68F]">
                                 No active services available.
                             </p>
                         </div>
@@ -270,10 +276,10 @@
                     </div>
                 @enderror
 
-                <div class="mt-6 rounded-xl border border-[#D4AF37]/25 bg-black/20 p-4">
+                <div class="mt-6 rounded-xl border border-[#C7AD8A]/25 bg-black/20 p-4">
                     <label
                         for="promo_code"
-                        class="block text-xs font-semibold uppercase tracking-[0.14em] text-[#D4AF37]">
+                        class="block text-xs font-semibold uppercase tracking-[0.14em] text-[#C7AD8A]">
                         Promo Code
                     </label>
 
@@ -294,15 +300,29 @@
                 </div>
 
                 @if($services->isNotEmpty())
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-3
-                                border-t border-[#3A321F] mt-6 pt-6">
-                        <button type="submit" class="btn-primary text-center">
-                            Calculate Discount
-                        </button>
+                    <div class="sticky bottom-4 z-20 mt-6 rounded-2xl border border-[#C7AD8A]/35 bg-[#050505]/95 p-4 shadow-2xl shadow-black/60 backdrop-blur">
+                        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <p class="text-xs uppercase tracking-[0.18em] text-[#C7AD8A]">
+                                    Checkout
+                                </p>
 
-                        <a href="{{ route('scanner.index') }}" class="btn-secondary text-center">
-                            Cancel
-                        </a>
+                                <p class="mt-1 text-sm text-[#B9A68F]">
+                                    <span x-text="selectedCount"></span>
+                                    <span x-text="selectedCount === 1 ? 'service selected' : 'services selected'"></span>
+                                </p>
+                            </div>
+
+                            <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+                                <button type="submit" class="btn-primary text-center">
+                                    Calculate Discount
+                                </button>
+
+                                <a href="{{ route('scanner.index') }}" class="btn-secondary text-center">
+                                    Cancel
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 @endif
             </form>
@@ -310,4 +330,5 @@
     </div>
 
 </x-app-layout>
+
 

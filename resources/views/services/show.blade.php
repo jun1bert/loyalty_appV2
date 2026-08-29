@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-1">
                 Services
             </p>
 
@@ -17,11 +17,11 @@
         <div class="theme-card p-6 sm:p-8">
             <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                 <div>
-                    <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
+                    <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A]">
                         Service
                     </p>
 
-                    <h2 class="font-serif text-3xl text-[#F7E7B2] mt-2">
+                    <h2 class="font-serif text-3xl text-[#F6F0E8] mt-2">
                         {{ $service->name }}
                     </h2>
                 </div>
@@ -35,51 +35,51 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-4 gap-6 mt-8">
                 <div>
-                    <p class="text-xs text-[#C9B46B]">
+                    <p class="text-xs text-[#B9A68F]">
                         Price
                     </p>
 
-                    <p class="font-medium text-[#F7E7B2] mt-1">
+                    <p class="font-medium text-[#F6F0E8] mt-1">
                         PHP {{ number_format($service->price, 2) }}
                     </p>
                 </div>
 
                 <div>
-                    <p class="text-xs text-[#C9B46B]">
+                    <p class="text-xs text-[#B9A68F]">
                         Discount Eligible
                     </p>
 
-                    <p class="font-medium text-[#F7E7B2] mt-1">
+                    <p class="font-medium text-[#F6F0E8] mt-1">
                         {{ $service->discount_eligible ? 'Yes' : 'No' }}
                     </p>
                 </div>
 
                 <div>
-                    <p class="text-xs text-[#C9B46B]">
+                    <p class="text-xs text-[#B9A68F]">
                         Type
                     </p>
 
-                    <p class="font-medium text-[#F7E7B2] mt-1">
+                    <p class="font-medium text-[#F6F0E8] mt-1">
                         {{ $service->is_package ? 'Package' : 'Single session' }}
                     </p>
                 </div>
 
                 <div>
-                    <p class="text-xs text-[#C9B46B]">
+                    <p class="text-xs text-[#B9A68F]">
                         Sessions
                     </p>
 
-                    <p class="font-medium text-[#F7E7B2] mt-1">
+                    <p class="font-medium text-[#F6F0E8] mt-1">
                         {{ $service->is_package ? $service->session_count : '1' }}
                     </p>
                 </div>
 
                 <div>
-                    <p class="text-xs text-[#C9B46B]">
+                    <p class="text-xs text-[#B9A68F]">
                         Created
                     </p>
 
-                    <p class="font-medium text-[#F7E7B2] mt-1">
+                    <p class="font-medium text-[#F6F0E8] mt-1">
                         {{ $service->created_at->format('M d, Y') }}
                     </p>
                 </div>
@@ -103,4 +103,5 @@
     </div>
 
 </x-app-layout>
+
 

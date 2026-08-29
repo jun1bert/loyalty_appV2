@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-1">
                 Loyalty Verification
             </p>
 
@@ -16,7 +16,7 @@
 
         @if(session('success'))
             <div class="mb-5 rounded-lg border border-[#3A321F]
-                        bg-[#0D0D0D] px-4 py-3 text-sm text-[#E8DDAA]">
+                        bg-[#080808] px-4 py-3 text-sm text-[#E8D8C3]">
                 {{ session('success') }}
             </div>
         @endif
@@ -32,15 +32,15 @@
 
             <div class="text-center">
 
-                <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
+                <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A]">
                     Membership Scanner
                 </p>
 
-                <h2 class="font-serif text-2xl text-[#F7E7B2] mt-2">
+                <h2 class="font-serif text-2xl text-[#F6F0E8] mt-2">
                     Scan Customer Loyalty Card
                 </h2>
 
-                <p class="text-sm text-[#C9B46B] mt-2">
+                <p class="text-sm text-[#B9A68F] mt-2">
                     Position the customer's QR code inside the camera frame.
                 </p>
 
@@ -60,7 +60,7 @@
 
             {{-- Status --}}
             <div id="scanner-status"
-                 class="mt-4 text-center text-sm text-[#C9B46B]">
+                 class="mt-4 text-center text-sm text-[#B9A68F]">
 
                 Waiting for camera...
 
@@ -87,11 +87,11 @@
             {{-- Manual fallback --}}
             <div class="border-t border-[#3A321F] mt-8 pt-6">
 
-                <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
+                <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A]">
                     Manual Verification
                 </p>
 
-                <p class="text-sm text-[#C9B46B] mt-2">
+                <p class="text-sm text-[#B9A68F] mt-2">
                     If the camera is unavailable, you can still enter the QR token manually.
                 </p>
 
@@ -177,3 +177,4 @@
     </script>
 
 </x-app-layout>
+

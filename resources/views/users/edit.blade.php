@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-1">
                 User Management
             </p>
 
@@ -37,7 +37,7 @@
 
                 <div>
 
-                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                    <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                         Full Name
                     </label>
 
@@ -60,7 +60,7 @@
 
                 <div>
 
-                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                    <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                         Email
                     </label>
 
@@ -83,7 +83,7 @@
 
                 <div>
 
-                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                    <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                         Role
                     </label>
 
@@ -114,12 +114,25 @@
                             Staff
                         </option>
 
+                        @if($user->role === 'customer')
+                            <option
+                                value="customer"
+                                {{ old('role', $user->role) === 'customer' ? 'selected' : '' }}
+                            >
+                                Customer
+                            </option>
+                        @endif
+
                     </select>
 
-                    <p class="text-xs text-[#C9B46B] mt-2">
-                        Staff can only use the QR scanner.
-                        Management can manage services, loyalty plans,
-                        customers, QR scanning and transactions.
+                    <p class="text-xs text-[#B9A68F] mt-2">
+                        @if($user->role === 'customer')
+                            Customer accounts keep access to their profile, plan availed, and transactions.
+                        @else
+                            Staff can only use the QR scanner.
+                            Management can manage services, loyalty plans,
+                            customers, QR scanning and transactions.
+                        @endif
                     </p>
 
                     @error('role')
@@ -133,11 +146,11 @@
 
                 <div class="border-t border-[#3A321F] pt-6">
 
-                    <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+                    <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-1">
                         Password
                     </p>
 
-                    <p class="text-sm text-[#C9B46B] mb-5">
+                    <p class="text-sm text-[#B9A68F] mb-5">
                         Leave these fields empty if you do not want to change the password.
                     </p>
 
@@ -146,7 +159,7 @@
 
                         <div>
 
-                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                            <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                                 New Password
                             </label>
 
@@ -167,7 +180,7 @@
 
                         <div>
 
-                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                            <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                                 Confirm New Password
                             </label>
 
@@ -187,13 +200,13 @@
                 @if(auth()->id() === $user->id)
 
                     <div class="rounded-xl border border-[#3A321F]
-                                bg-[#1A1A1A] p-4">
+                                bg-[#151515] p-4">
 
-                        <p class="text-sm font-medium text-[#F7E7B2]">
+                        <p class="text-sm font-medium text-[#F6F0E8]">
                             This is your account
                         </p>
 
-                        <p class="text-xs text-[#C9B46B] mt-1">
+                        <p class="text-xs text-[#B9A68F] mt-1">
                             The system will prevent you from removing your own administrator role.
                         </p>
 
@@ -227,3 +240,4 @@
     </div>
 
 </x-app-layout>
+

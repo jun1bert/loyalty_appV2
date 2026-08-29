@@ -5,7 +5,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 
             <div>
-                <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+                <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-1">
                     Loyalty Management
                 </p>
 
@@ -28,7 +28,7 @@
 
     @if(session('success'))
         <div class="mb-5 rounded-lg border border-[#3A321F]
-                    bg-[#0D0D0D] px-4 py-3 text-sm text-[#E8DDAA]">
+                    bg-[#080808] px-4 py-3 text-sm text-[#E8D8C3]">
             {{ session('success') }}
         </div>
     @endif
@@ -100,7 +100,7 @@
                         @endphp
 
                         <tr class="border-t border-[#3A321F]
-                                   hover:bg-[#1A1A1A]/60 transition">
+                                   hover:bg-[#151515]/60 transition">
 
                             <td class="px-6 py-4">
 
@@ -119,13 +119,13 @@
                                     @endif
 
                                     <div>
-                                        <p class="font-medium text-[#F7E7B2]">
+                                        <p class="font-medium text-[#F6F0E8]">
                                             {{ $customer->first_name }}
                                             {{ $customer->last_name }}
                                         </p>
 
                                         @if($customer->phone)
-                                            <p class="text-xs text-[#C9B46B] mt-1">
+                                            <p class="text-xs text-[#B9A68F] mt-1">
                                                 {{ $customer->phone }}
                                             </p>
                                         @endif
@@ -138,17 +138,17 @@
 
                                 @if($membership)
 
-                                    <p class="font-medium text-[#F7E7B2]">
+                                    <p class="font-medium text-[#F6F0E8]">
                                         {{ $membership->membership_code }}
                                     </p>
 
-                                    <p class="text-xs text-[#C9B46B] mt-1">
+                                    <p class="text-xs text-[#B9A68F] mt-1">
                                         {{ $membership->loyaltyPlan?->name }}
                                     </p>
 
                                 @else
 
-                                    <span class="text-[#C9B46B]">
+                                    <span class="text-[#B9A68F]">
                                         No membership
                                     </span>
 
@@ -160,7 +160,7 @@
 
                                 @if($membership?->loyaltyPlan)
 
-                                    <span class="font-medium text-[#D4AF37]">
+                                    <span class="font-medium text-[#C7AD8A]">
                                         {{ number_format($membership->loyaltyPlan->discount_percentage, 0) }}%
                                     </span>
 
@@ -170,7 +170,7 @@
 
                             </td>
 
-                            <td class="px-6 py-4 text-[#E8DDAA]">
+                            <td class="px-6 py-4 text-[#E8D8C3]">
 
                                 @if($membership?->expires_at)
                                     {{ $membership->expires_at->format('M d, Y') }}
@@ -210,13 +210,13 @@
 
                                     <a
                                         href="{{ route('customers.show', $customer) }}"
-                                        class="text-[#D4AF37] hover:text-[#F2C94C] font-medium">
+                                        class="text-[#C7AD8A] hover:text-[#E8D8C3] font-medium">
                                         View
                                     </a>
 
                                     <a
                                         href="{{ route('customers.edit', $customer) }}"
-                                        class="text-[#D4AF37] hover:text-[#F2C94C] font-medium">
+                                        class="text-[#C7AD8A] hover:text-[#E8D8C3] font-medium">
                                         Edit
                                     </a>
 
@@ -230,7 +230,7 @@
 
                         <tr>
                             <td colspan="6"
-                                class="px-6 py-12 text-center text-[#C9B46B]">
+                                class="px-6 py-12 text-center text-[#B9A68F]">
                                 {{ $search !== '' ? 'No customers match your search.' : 'No customers have been registered yet.' }}
                             </td>
                         </tr>
@@ -246,4 +246,5 @@
     </div>
 
 </x-app-layout>
+
 

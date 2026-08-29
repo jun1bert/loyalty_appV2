@@ -496,6 +496,64 @@ test('user management index handles users without timestamps', function () {
         ->assertSee('Not recorded');
 });
 
+test('user management index includes customer users', function () {
+    $admin = User::factory()->create([
+        'role' => 'admin',
+    ]);
+
+    User::factory()->create([
+        'name' => 'Customer Account',
+        'email' => 'customer-account@example.com',
+        'role' => 'customer',
+    ]);
+
+    $this->actingAs($admin)
+        ->get(route('users.index'))
+        ->assertOk()
+        ->assertSee('Customer Account')
+        ->assertSee('customer-account@example.com')
+        ->assertSee('Customer');
+});
+
+test('customer user edit form keeps customer role selected', function () {
+    $admin = User::factory()->create([
+        'role' => 'admin',
+    ]);
+
+    $customerUser = User::factory()->create([
+        'name' => 'Customer Account',
+        'role' => 'customer',
+    ]);
+
+    $this->actingAs($admin)
+        ->get(route('users.edit', $customerUser))
+        ->assertOk()
+        ->assertSee('value="customer"', false)
+        ->assertSee('Customer accounts keep access');
+});
+
+test('customer user cannot be converted to a staff role from user management', function () {
+    $admin = User::factory()->create([
+        'role' => 'admin',
+    ]);
+
+    $customerUser = User::factory()->create([
+        'name' => 'Customer Account',
+        'email' => 'customer-role@example.com',
+        'role' => 'customer',
+    ]);
+
+    $this->actingAs($admin)
+        ->put(route('users.update', $customerUser), [
+            'name' => 'Customer Account',
+            'email' => 'customer-role@example.com',
+            'role' => 'admin',
+        ])
+        ->assertSessionHas('error', 'Customer accounts cannot be converted to staff roles here.');
+
+    expect($customerUser->fresh()->role)->toBe('customer');
+});
+
 test('management list pages can be searched', function () {
     $user = managementUser();
 

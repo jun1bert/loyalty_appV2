@@ -13,7 +13,7 @@
     </x-slot>
 
     @if(session('success'))
-        <div class="mb-5 rounded-lg border border-[#D4AF37]/30 bg-[#0D0D0D] px-4 py-3 text-sm text-[#E8DDAA]">
+        <div class="mb-5 rounded-lg border border-[#C7AD8A]/30 bg-[#080808] px-4 py-3 text-sm text-[#E8D8C3]">
             {{ session('success') }}
         </div>
     @endif
@@ -39,26 +39,26 @@
                 </thead>
                 <tbody>
                     @forelse($promoCodes as $promoCode)
-                        <tr class="border-t border-[#3A321F] hover:bg-[#1A1A1A]/60">
+                        <tr class="border-t border-[#3A321F] hover:bg-[#151515]/60">
                             <td class="px-6 py-4">
-                                <p class="font-semibold text-[#F7E7B2]">{{ $promoCode->code }}</p>
+                                <p class="font-semibold text-[#F6F0E8]">{{ $promoCode->code }}</p>
                                 @if($promoCode->name)
-                                    <p class="mt-1 text-xs text-[#C9B46B]">{{ $promoCode->name }}</p>
+                                    <p class="mt-1 text-xs text-[#B9A68F]">{{ $promoCode->name }}</p>
                                 @endif
                             </td>
-                            <td class="px-6 py-4 text-[#E8DDAA]">
+                            <td class="px-6 py-4 text-[#E8D8C3]">
                                 @if($promoCode->discount_type === 'percentage')
                                     {{ number_format($promoCode->discount_value, 0) }}%
                                 @else
                                     PHP {{ number_format($promoCode->discount_value, 2) }}
                                 @endif
                             </td>
-                            <td class="px-6 py-4 text-[#E8DDAA]">
+                            <td class="px-6 py-4 text-[#E8D8C3]">
                                 {{ $promoCode->starts_at?->format('M d, Y') ?? 'Anytime' }}
                                 -
                                 {{ $promoCode->expires_at?->format('M d, Y') ?? 'No expiry' }}
                             </td>
-                            <td class="px-6 py-4 text-[#E8DDAA]">
+                            <td class="px-6 py-4 text-[#E8D8C3]">
                                 {{ number_format($promoCode->transactions_count) }}
                                 @if($promoCode->usage_limit)
                                     / {{ number_format($promoCode->usage_limit) }}
@@ -71,7 +71,7 @@
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex justify-end gap-4">
-                                    <a href="{{ route('promo-codes.edit', $promoCode) }}" class="font-medium text-[#D4AF37] hover:text-[#F2C94C]">Edit</a>
+                                    <a href="{{ route('promo-codes.edit', $promoCode) }}" class="font-medium text-[#C7AD8A] hover:text-[#E8D8C3]">Edit</a>
                                     <form method="POST" action="{{ route('promo-codes.destroy', $promoCode) }}">
                                         @csrf
                                         @method('DELETE')
@@ -84,7 +84,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="px-6 py-12 text-center text-[#C9B46B]">
+                            <td colspan="6" class="px-6 py-12 text-center text-[#B9A68F]">
                                 No promo codes have been created yet.
                             </td>
                         </tr>
@@ -94,3 +94,4 @@
         </div>
     </div>
 </x-app-layout>
+

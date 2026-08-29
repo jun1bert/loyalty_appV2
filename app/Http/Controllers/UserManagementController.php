@@ -10,7 +10,7 @@ use Illuminate\Validation\Rule;
 class UserManagementController extends Controller
 {
     /**
-     * Display all staff/admin users.
+     * Display all user accounts.
      */
     public function index()
     {
@@ -18,6 +18,7 @@ class UserManagementController extends Controller
                 'admin',
                 'management',
                 'staff',
+                'customer',
             ])
             ->orderBy('name')
             ->get();
@@ -67,6 +68,7 @@ class UserManagementController extends Controller
                     'admin',
                     'management',
                     'staff',
+                    'customer',
                 ]),
             ],
         ]);
@@ -140,6 +142,18 @@ class UserManagementController extends Controller
             return back()
                 ->withInput()
                 ->with('error', 'You cannot remove your own administrator role.');
+        }
+
+        if ($user->role !== 'customer' && $validated['role'] === 'customer') {
+            return back()
+                ->withInput()
+                ->with('error', 'Create customer accounts from the customer activation flow.');
+        }
+
+        if ($user->role === 'customer' && $validated['role'] !== 'customer') {
+            return back()
+                ->withInput()
+                ->with('error', 'Customer accounts cannot be converted to staff roles here.');
         }
 
         $user->name = $validated['name'];

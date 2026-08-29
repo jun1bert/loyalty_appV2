@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-1">
                 Transaction Details
             </p>
 
@@ -20,30 +20,30 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
                 <div>
-                    <p class="text-xs text-[#C9B46B]">Customer</p>
-                    <p class="font-medium text-[#F7E7B2] mt-1">
+                    <p class="text-xs text-[#B9A68F]">Customer</p>
+                    <p class="font-medium text-[#F6F0E8] mt-1">
                         {{ $transaction->customer->first_name }}
                         {{ $transaction->customer->last_name }}
                     </p>
                 </div>
 
                 <div>
-                    <p class="text-xs text-[#C9B46B]">Membership</p>
-                    <p class="font-medium text-[#F7E7B2] mt-1">
+                    <p class="text-xs text-[#B9A68F]">Membership</p>
+                    <p class="font-medium text-[#F6F0E8] mt-1">
                         {{ $transaction->membership->membership_code }}
                     </p>
                 </div>
 
                 <div>
-                    <p class="text-xs text-[#C9B46B]">Processed By</p>
-                    <p class="font-medium text-[#F7E7B2] mt-1">
+                    <p class="text-xs text-[#B9A68F]">Processed By</p>
+                    <p class="font-medium text-[#F6F0E8] mt-1">
                         {{ $transaction->processedBy?->name ?? '—' }}
                     </p>
                 </div>
 
                 <div>
-                    <p class="text-xs text-[#C9B46B]">Date</p>
-                    <p class="font-medium text-[#F7E7B2] mt-1">
+                    <p class="text-xs text-[#B9A68F]">Date</p>
+                    <p class="font-medium text-[#F6F0E8] mt-1">
                         {{ $transaction->transaction_date->format('M d, Y h:i A') }}
                     </p>
                 </div>
@@ -57,7 +57,7 @@
         <div class="theme-card overflow-hidden">
 
             <div class="px-6 py-5 border-b border-[#3A321F]">
-                <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
+                <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A]">
                     Services
                 </p>
 
@@ -86,10 +86,10 @@
 
                             <tr class="border-t border-[#3A321F]">
 
-                                <td class="px-6 py-4 font-medium text-[#F7E7B2]">
+                                <td class="px-6 py-4 font-medium text-[#F6F0E8]">
                                     <p>{{ $item->service_name }}</p>
                                     @if($item->session_count)
-                                        <p class="mt-1 text-xs text-[#C9B46B]">
+                                        <p class="mt-1 text-xs text-[#B9A68F]">
                                             {{ $item->is_package_redemption ? 'Prepaid session redeemed' : 'Package purchased' }}
                                             @if($item->is_package_redemption)
                                                 - {{ $item->sessions_redeemed }} of {{ $item->session_count }} sessions
@@ -112,11 +112,11 @@
                                     @endif
                                 </td>
 
-                                <td class="px-6 py-4 text-[#D4AF37]">
+                                <td class="px-6 py-4 text-[#C7AD8A]">
                                     - ₱{{ number_format($item->discount_amount, 2) }}
                                 </td>
 
-                                <td class="px-6 py-4 text-right font-semibold text-[#F7E7B2]">
+                                <td class="px-6 py-4 text-right font-semibold text-[#F6F0E8]">
                                     ₱{{ number_format($item->final_price, 2) }}
                                 </td>
 
@@ -139,33 +139,33 @@
             <div class="space-y-3 max-w-md ml-auto">
 
                 <div class="flex justify-between text-sm">
-                    <span class="text-[#C9B46B]">
+                    <span class="text-[#B9A68F]">
                         Subtotal
                     </span>
 
-                    <span class="font-medium text-[#F7E7B2]">
+                    <span class="font-medium text-[#F6F0E8]">
                         ₱{{ number_format($transaction->subtotal, 2) }}
                     </span>
                 </div>
 
                 <div class="flex justify-between text-sm">
-                    <span class="text-[#C9B46B]">
+                    <span class="text-[#B9A68F]">
                         Discount Eligible Amount
                     </span>
 
-                    <span class="font-medium text-[#F7E7B2]">
+                    <span class="font-medium text-[#F6F0E8]">
                         ₱{{ number_format($transaction->eligible_subtotal, 2) }}
                     </span>
                 </div>
 
                 <div class="flex justify-between text-sm">
 
-                    <span class="text-[#C9B46B]">
+                    <span class="text-[#B9A68F]">
                         Loyalty Discount
                         ({{ number_format($transaction->discount_percentage, 0) }}%)
                     </span>
 
-                    <span class="font-medium text-[#D4AF37]">
+                    <span class="font-medium text-[#C7AD8A]">
                         - ₱{{ number_format($transaction->discount_amount, 2) }}
                     </span>
 
@@ -173,12 +173,12 @@
 
                 @if($transaction->promo_code)
                     <div class="flex justify-between text-sm">
-                        <span class="text-[#C9B46B]">
+                        <span class="text-[#B9A68F]">
                             Promo Code
                             ({{ $transaction->promo_code }})
                         </span>
 
-                        <span class="font-medium text-[#D4AF37]">
+                        <span class="font-medium text-[#C7AD8A]">
                             - PHP {{ number_format($transaction->promo_discount_amount, 2) }}
                         </span>
                     </div>
@@ -186,11 +186,11 @@
 
                 <div class="flex justify-between items-end border-t border-[#3A321F] pt-5 mt-4">
 
-                    <span class="font-medium text-[#F7E7B2]">
+                    <span class="font-medium text-[#F6F0E8]">
                         Amount Paid
                     </span>
 
-                    <span class="font-serif text-3xl text-[#F7E7B2]">
+                    <span class="font-serif text-3xl text-[#F6F0E8]">
                         ₱{{ number_format($transaction->total_amount, 2) }}
                     </span>
 
@@ -212,3 +212,4 @@
     </div>
 
 </x-app-layout>
+

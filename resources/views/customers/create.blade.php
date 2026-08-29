@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-1">
                 Customers
             </p>
 
@@ -25,14 +25,14 @@
 
                 {{-- Customer Information --}}
                 <div>
-                    <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-4">
+                    <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-4">
                         Customer Information
                     </p>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
                         <div>
-                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                            <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                                 First Name
                             </label>
 
@@ -53,7 +53,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                            <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                                 Last Name
                             </label>
 
@@ -74,7 +74,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                            <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                                 Mobile Number
                             </label>
 
@@ -94,7 +94,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                            <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                                 Birth Date
                             </label>
 
@@ -113,19 +113,19 @@
                         </div>
 
                         <div class="sm:col-span-2">
-                            <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                            <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                                 Customer Photo
-                                <span class="text-[#C9B46B] font-normal">(optional)</span>
+                                <span class="text-[#B9A68F] font-normal">(optional)</span>
                             </label>
 
                             <input
                                 type="file"
                                 name="photo"
                                 accept="image/*"
-                                class="theme-input file:mr-4 file:rounded-lg file:border-0 file:bg-[#D4AF37] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#0D0D0D]"
+                                class="theme-input file:mr-4 file:rounded-lg file:border-0 file:bg-[#C7AD8A] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#080808]"
                             >
 
-                            <p class="text-xs text-[#C9B46B] mt-2">
+                            <p class="text-xs text-[#B9A68F] mt-2">
                                 Upload a clear customer photo for staff verification. Maximum size: 2 MB.
                             </p>
 
@@ -142,16 +142,16 @@
                 {{-- Loyalty Plan --}}
                 <div class="border-t border-[#3A321F] pt-6">
 
-                    <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-2">
+                    <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-2">
                         Loyalty Membership
                     </p>
 
-                    <p class="text-sm text-[#C9B46B] mb-4">
+                    <p class="text-sm text-[#B9A68F] mb-4">
                         Select the loyalty card the customer is availing.
                     </p>
 
                     <div>
-                        <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                        <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                             Loyalty Plan
                         </label>
 
@@ -188,7 +188,7 @@
                 {{-- Information Box --}}
                 <div class="rounded-xl bg-[#3A321F]/50 p-5">
 
-                    <p class="font-serif text-lg text-[#F7E7B2]">
+                    <p class="font-serif text-lg text-[#F6F0E8]">
                         What happens after registration?
                     </p>
 
@@ -225,4 +225,5 @@
     </div>
 
 </x-app-layout>
+
 

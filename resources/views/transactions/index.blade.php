@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-1">
                 Loyalty Management
             </p>
 
@@ -82,61 +82,61 @@
 
                     @forelse($transactions as $transaction)
 
-                        <tr class="border-t border-[#3A321F] hover:bg-[#1A1A1A]/60">
+                        <tr class="border-t border-[#3A321F] hover:bg-[#151515]/60">
 
-                            <td class="px-6 py-4 font-medium text-[#F7E7B2]">
+                            <td class="px-6 py-4 font-medium text-[#F6F0E8]">
                                 #{{ str_pad($transaction->id, 5, '0', STR_PAD_LEFT) }}
                             </td>
 
                             <td class="px-6 py-4">
 
-                                <p class="font-medium text-[#F7E7B2]">
+                                <p class="font-medium text-[#F6F0E8]">
                                     {{ $transaction->customer->first_name }}
                                     {{ $transaction->customer->last_name }}
                                 </p>
 
-                                <p class="text-xs text-[#C9B46B] mt-1">
+                                <p class="text-xs text-[#B9A68F] mt-1">
                                     {{ $transaction->membership->membership_code }}
                                 </p>
 
                             </td>
 
-                            <td class="px-6 py-4 text-[#E8DDAA]">
+                            <td class="px-6 py-4 text-[#E8D8C3]">
                                 ₱{{ number_format($transaction->subtotal, 2) }}
                             </td>
 
                             <td class="px-6 py-4">
-                                <p class="font-medium text-[#D4AF37]">
+                                <p class="font-medium text-[#C7AD8A]">
                                     - ₱{{ number_format($transaction->discount_amount, 2) }}
                                 </p>
 
-                                <p class="text-xs text-[#C9B46B]">
+                                <p class="text-xs text-[#B9A68F]">
                                     {{ number_format($transaction->discount_percentage, 0) }}%
                                 </p>
 
                                 @if($transaction->promo_code)
-                                    <p class="text-xs text-[#C9B46B]">
+                                    <p class="text-xs text-[#B9A68F]">
                                         + {{ $transaction->promo_code }}
                                     </p>
                                 @endif
                             </td>
 
-                            <td class="px-6 py-4 font-semibold text-[#F7E7B2]">
+                            <td class="px-6 py-4 font-semibold text-[#F6F0E8]">
                                 ₱{{ number_format($transaction->total_amount, 2) }}
                             </td>
 
-                            <td class="px-6 py-4 text-[#E8DDAA]">
+                            <td class="px-6 py-4 text-[#E8D8C3]">
                                 {{ $transaction->processedBy?->name ?? '—' }}
                             </td>
 
-                            <td class="px-6 py-4 text-[#E8DDAA]">
+                            <td class="px-6 py-4 text-[#E8D8C3]">
                                 {{ $transaction->transaction_date->format('M d, Y h:i A') }}
                             </td>
 
                             <td class="px-6 py-4 text-right">
                                 <a
                                     href="{{ route('transactions.show', $transaction) }}"
-                                    class="text-[#D4AF37] hover:text-[#F2C94C] font-medium">
+                                    class="text-[#C7AD8A] hover:text-[#E8D8C3] font-medium">
                                     View
                                 </a>
                             </td>
@@ -147,7 +147,7 @@
 
                         <tr>
                             <td colspan="8"
-                                class="px-6 py-12 text-center text-[#C9B46B]">
+                                class="px-6 py-12 text-center text-[#B9A68F]">
                                 {{ $search !== '' ? 'No transactions match your search.' : 'No loyalty transactions yet.' }}
                             </td>
                         </tr>
@@ -163,4 +163,5 @@
     </div>
 
 </x-app-layout>
+
 

@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Martinis & Manicures Loyalty') }}</title>
     <link rel="icon" type="image/png" href="{{ asset('images/martinis-icon.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('images/martinis-icon.png') }}">
-    <meta name="theme-color" content="#D4AF37">
+    <meta name="theme-color" content="#C7AD8A">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -458,7 +458,7 @@
                 class="p-5"
             >
 
-                <div class="rounded-2xl border border-[#D4AF37]/34 bg-[#111111] p-4 text-xs text-[var(--muted)] shadow-sm shadow-black/30">
+                <div class="rounded-2xl border border-[#C7AD8A]/34 bg-[#111111] p-4 text-xs text-[var(--muted)] shadow-sm shadow-black/30">
 
 
                     {{-- ROLE --}}
@@ -470,13 +470,13 @@
                             <span
                                 class="inline-flex
                                        rounded-full
-                                       bg-[#D4AF37]/18
+                                       bg-[#C7AD8A]/18
                                        px-2 py-1
                                        text-[9px]
                                        font-semibold
                                        uppercase
                                        tracking-[0.15em]
-                                       text-[#F7E7B2]"
+                                       text-[#F6F0E8]"
                             >
                                 Admin
                             </span>
@@ -486,13 +486,13 @@
                             <span
                                 class="inline-flex
                                        rounded-full
-                                       bg-[#D4AF37]/18
+                                       bg-[#C7AD8A]/18
                                        px-2 py-1
                                        text-[9px]
                                        font-semibold
                                        uppercase
                                        tracking-[0.15em]
-                                       text-[#F7E7B2]"
+                                       text-[#F6F0E8]"
                             >
                                 Management
                             </span>
@@ -502,13 +502,13 @@
                             <span
                                 class="inline-flex
                                        rounded-full
-                                       bg-[#D4AF37]/18
+                                       bg-[#C7AD8A]/18
                                        px-2 py-1
                                        text-[9px]
                                        font-semibold
                                        uppercase
                                        tracking-[0.15em]
-                                       text-[#F7E7B2]"
+                                       text-[#F6F0E8]"
                             >
                                 Staff
                             </span>
@@ -518,13 +518,13 @@
                             <span
                                 class="inline-flex
                                        rounded-full
-                                       bg-[#D4AF37]/18
+                                       bg-[#C7AD8A]/18
                                        px-2 py-1
                                        text-[9px]
                                        font-semibold
                                        uppercase
                                        tracking-[0.15em]
-                                       text-[#F7E7B2]"
+                                       text-[#F6F0E8]"
                             >
                                 Customer
                             </span>
@@ -621,7 +621,7 @@
                     class="lg:hidden
                            p-2
                            rounded-lg
-                           text-[#F7E7B2]
+                           text-[#F6F0E8]
                            hover:bg-[#3A321F]"
                     aria-label="Open sidebar"
                 >
@@ -642,7 +642,7 @@
                            text-xs
                            tracking-[0.18em]
                            uppercase
-                           text-[#D4AF37]"
+                           text-[#C7AD8A]"
                 >
 
                     @if(Auth::user()->hasRole('customer'))
@@ -666,7 +666,7 @@
 
                 <div class="text-right">
 
-                    <p class="text-sm text-[#E8DDAA]">
+                    <p class="text-sm text-[#E8D8C3]">
 
                         {{ Auth::user()->name }}
 
@@ -676,7 +676,7 @@
                         class="text-[10px]
                                uppercase
                                tracking-[0.12em]
-                               text-[#D4AF37]"
+                               text-[#C7AD8A]"
                     >
 
                         {{ Auth::user()->role }}
@@ -740,3 +740,4 @@
 </body>
 
 </html>
+

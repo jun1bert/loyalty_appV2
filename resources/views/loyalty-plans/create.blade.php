@@ -3,7 +3,7 @@
     <x-slot name="header">
 
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-1">
                 Loyalty Plans
             </p>
 
@@ -29,7 +29,7 @@
                 {{-- Plan Name --}}
                 <div>
 
-                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                    <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                         Plan Name
                     </label>
 
@@ -54,17 +54,17 @@
                 {{-- Card Price --}}
                 <div>
 
-                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                    <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                         Card Price
                     </label>
 
-                    <p class="text-xs text-[#C9B46B] mb-2">
+                    <p class="text-xs text-[#B9A68F] mb-2">
                         Amount the customer pays to avail this loyalty card.
                     </p>
 
                     <div class="relative">
 
-                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#C9B46B]">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#B9A68F]">
                             ₱
                         </span>
 
@@ -93,11 +93,11 @@
                 {{-- Discount --}}
                 <div>
 
-                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                    <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                         Discount Percentage
                     </label>
 
-                    <p class="text-xs text-[#C9B46B] mb-2">
+                    <p class="text-xs text-[#B9A68F] mb-2">
                         Discount members receive on eligible services.
                     </p>
 
@@ -115,7 +115,7 @@
                             required
                         >
 
-                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-[#C9B46B]">
+                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-[#B9A68F]">
                             %
                         </span>
 
@@ -133,17 +133,17 @@
                 {{-- Minimum Spend --}}
                 <div>
 
-                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                    <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                         Minimum Spend for Discount
                     </label>
 
-                    <p class="text-xs text-[#C9B46B] mb-2">
+                    <p class="text-xs text-[#B9A68F] mb-2">
                         Discount applies only when eligible services reach this amount. Use 0 for no minimum.
                     </p>
 
                     <div class="relative">
 
-                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#C9B46B]">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#B9A68F]">
                             PHP
                         </span>
 
@@ -172,11 +172,11 @@
                 {{-- Validity --}}
                 <div>
 
-                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                    <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                         Validity
                     </label>
 
-                    <p class="text-xs text-[#C9B46B] mb-2">
+                    <p class="text-xs text-[#B9A68F] mb-2">
                         Number of months the membership remains active.
                     </p>
 
@@ -192,7 +192,7 @@
                             required
                         >
 
-                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-[#C9B46B]">
+                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-[#B9A68F]">
                             months
                         </span>
 
@@ -216,19 +216,19 @@
                             type="checkbox"
                             name="is_active"
                             value="1"
-                            class="rounded border-[#B8860B]
-                                   text-[#D4AF37]
-                                   focus:ring-[#D4AF37]"
+                            class="rounded border-[#8B765B]
+                                   text-[#C7AD8A]
+                                   focus:ring-[#C7AD8A]"
                             {{ old('is_active', true) ? 'checked' : '' }}
                         >
 
                         <div>
 
-                            <p class="text-sm font-medium text-[#F7E7B2]">
+                            <p class="text-sm font-medium text-[#F6F0E8]">
                                 Active Plan
                             </p>
 
-                            <p class="text-xs text-[#C9B46B]">
+                            <p class="text-xs text-[#B9A68F]">
                                 Customers can avail this loyalty plan while it is active.
                             </p>
 
@@ -242,11 +242,11 @@
                 {{-- Preview --}}
                 <div class="rounded-xl bg-[#3A321F]/50 p-5">
 
-                    <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
+                    <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A]">
                         Example
                     </p>
 
-                    <p class="font-serif text-xl text-[#F7E7B2] mt-2">
+                    <p class="font-serif text-xl text-[#F6F0E8] mt-2">
                         Premium Loyalty Card
                     </p>
 
@@ -282,4 +282,5 @@
     </div>
 
 </x-app-layout>
+
 

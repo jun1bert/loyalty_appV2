@@ -3,7 +3,7 @@
     <x-slot name="header">
 
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-1">
                 Services
             </p>
 
@@ -29,7 +29,7 @@
 
                 <div>
 
-                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                    <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                         Service Name
                     </label>
 
@@ -53,13 +53,13 @@
 
                 <div>
 
-                    <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                    <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                         Price
                     </label>
 
                     <div class="relative">
 
-                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#C9B46B]">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#B9A68F]">
                             ₱
                         </span>
 
@@ -93,17 +93,17 @@
                             type="checkbox"
                             name="is_package"
                             value="1"
-                            class="rounded border-[#B8860B] text-[#D4AF37] focus:ring-[#D4AF37]"
+                            class="rounded border-[#8B765B] text-[#C7AD8A] focus:ring-[#C7AD8A]"
                             {{ old('is_package', $service->is_package) ? 'checked' : '' }}
                         >
 
                         <div>
 
-                            <p class="text-sm font-medium text-[#F7E7B2]">
+                            <p class="text-sm font-medium text-[#F6F0E8]">
                                 Multi-session Package
                             </p>
 
-                            <p class="text-xs text-[#C9B46B]">
+                            <p class="text-xs text-[#B9A68F]">
                                 Discount is applied once when the full package is paid.
                             </p>
 
@@ -112,7 +112,7 @@
                     </label>
 
                     <div>
-                        <label class="block text-sm font-medium text-[#F7E7B2] mb-2">
+                        <label class="block text-sm font-medium text-[#F6F0E8] mb-2">
                             Sessions Included
                         </label>
 
@@ -139,17 +139,17 @@
                             type="checkbox"
                             name="discount_eligible"
                             value="1"
-                            class="rounded border-[#B8860B] text-[#D4AF37] focus:ring-[#D4AF37]"
+                            class="rounded border-[#8B765B] text-[#C7AD8A] focus:ring-[#C7AD8A]"
                             {{ old('discount_eligible', $service->discount_eligible) ? 'checked' : '' }}
                         >
 
                         <div>
 
-                            <p class="text-sm font-medium text-[#F7E7B2]">
+                            <p class="text-sm font-medium text-[#F6F0E8]">
                                 Loyalty Discount Eligible
                             </p>
 
-                            <p class="text-xs text-[#C9B46B]">
+                            <p class="text-xs text-[#B9A68F]">
                                 Members can receive their loyalty discount for this service.
                             </p>
 
@@ -164,17 +164,17 @@
                             type="checkbox"
                             name="is_active"
                             value="1"
-                            class="rounded border-[#B8860B] text-[#D4AF37] focus:ring-[#D4AF37]"
+                            class="rounded border-[#8B765B] text-[#C7AD8A] focus:ring-[#C7AD8A]"
                             {{ old('is_active', $service->is_active) ? 'checked' : '' }}
                         >
 
                         <div>
 
-                            <p class="text-sm font-medium text-[#F7E7B2]">
+                            <p class="text-sm font-medium text-[#F6F0E8]">
                                 Active Service
                             </p>
 
-                            <p class="text-xs text-[#C9B46B]">
+                            <p class="text-xs text-[#B9A68F]">
                                 Active services can be used in loyalty transactions.
                             </p>
 
@@ -208,3 +208,4 @@
     </div>
 
 </x-app-layout>
+

@@ -3,7 +3,7 @@
     <x-slot name="header">
 
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-1">
                 Loyalty Management
             </p>
 
@@ -89,18 +89,18 @@
                     @forelse($memberships as $membership)
 
                         <tr class="border-t border-[#3A321F]
-                                   hover:bg-[#1A1A1A]/60 transition">
+                                   hover:bg-[#151515]/60 transition">
 
                             <td class="px-6 py-4">
 
-                                <p class="font-medium text-[#F7E7B2]">
+                                <p class="font-medium text-[#F6F0E8]">
                                     {{ $membership->customer->first_name }}
                                     {{ $membership->customer->last_name }}
                                 </p>
 
                                 @if($membership->customer->phone)
 
-                                    <p class="text-xs text-[#C9B46B] mt-1">
+                                    <p class="text-xs text-[#B9A68F] mt-1">
                                         {{ $membership->customer->phone }}
                                     </p>
 
@@ -111,14 +111,14 @@
 
                             <td class="px-6 py-4">
 
-                                <p class="font-medium text-[#F7E7B2]">
+                                <p class="font-medium text-[#F6F0E8]">
                                     {{ $membership->membership_code }}
                                 </p>
 
                             </td>
 
 
-                            <td class="px-6 py-4 text-[#E8DDAA]">
+                            <td class="px-6 py-4 text-[#E8D8C3]">
 
                                 {{ $membership->loyaltyPlan?->name ?? '—' }}
 
@@ -127,7 +127,7 @@
 
                             <td class="px-6 py-4">
 
-                                <span class="font-medium text-[#D4AF37]">
+                                <span class="font-medium text-[#C7AD8A]">
 
                                     {{ number_format(
                                         $membership->loyaltyPlan?->discount_percentage ?? 0,
@@ -139,7 +139,7 @@
                             </td>
 
 
-                            <td class="px-6 py-4 text-[#E8DDAA]">
+                            <td class="px-6 py-4 text-[#E8D8C3]">
 
                                 {{ $membership->activated_at
                                     ? $membership->activated_at->format('M d, Y')
@@ -148,7 +148,7 @@
                             </td>
 
 
-                            <td class="px-6 py-4 text-[#E8DDAA]">
+                            <td class="px-6 py-4 text-[#E8D8C3]">
 
                                 {{ $membership->expires_at
                                     ? $membership->expires_at->format('M d, Y')
@@ -194,8 +194,8 @@
 
                                 <a
                                     href="{{ route('memberships.show', $membership) }}"
-                                    class="text-[#D4AF37]
-                                           hover:text-[#F2C94C]
+                                    class="text-[#C7AD8A]
+                                           hover:text-[#E8D8C3]
                                            font-medium">
 
                                     View
@@ -212,7 +212,7 @@
 
                             <td
                                 colspan="8"
-                                class="px-6 py-12 text-center text-[#C9B46B]">
+                                class="px-6 py-12 text-center text-[#B9A68F]">
 
                                 {{ $search !== '' ? 'No memberships match your search.' : 'No memberships found.' }}
 
@@ -231,4 +231,5 @@
     </div>
 
 </x-app-layout>
+
 

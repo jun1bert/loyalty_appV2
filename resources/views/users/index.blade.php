@@ -4,7 +4,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 
             <div>
-                <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+                <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-1">
                     Administration
                 </p>
 
@@ -26,7 +26,7 @@
 
     @if(session('success'))
         <div class="mb-5 rounded-lg border border-[#3A321F]
-                    bg-[#0D0D0D] px-4 py-3 text-sm text-[#E8DDAA]">
+                    bg-[#080808] px-4 py-3 text-sm text-[#E8D8C3]">
             {{ session('success') }}
         </div>
     @endif
@@ -78,16 +78,16 @@
                     @forelse($users as $user)
 
                         <tr class="border-t border-[#3A321F]
-                                   hover:bg-[#1A1A1A]/60 transition">
+                                   hover:bg-[#151515]/60 transition">
 
                             <td class="px-6 py-4">
 
-                                <p class="font-medium text-[#F7E7B2]">
+                                <p class="font-medium text-[#F6F0E8]">
                                     {{ $user->name }}
                                 </p>
 
                                 @if(auth()->id() === $user->id)
-                                    <p class="text-xs text-[#D4AF37] mt-1">
+                                    <p class="text-xs text-[#C7AD8A] mt-1">
                                         Your account
                                     </p>
                                 @endif
@@ -95,7 +95,7 @@
                             </td>
 
 
-                            <td class="px-6 py-4 text-[#E8DDAA]">
+                            <td class="px-6 py-4 text-[#E8D8C3]">
                                 {{ $user->email }}
                             </td>
 
@@ -114,10 +114,16 @@
                                         Management
                                     </span>
 
-                                @else
+                                @elseif($user->role === 'staff')
 
                                     <span class="badge-inactive">
                                         Staff
+                                    </span>
+
+                                @else
+
+                                    <span class="badge-inactive">
+                                        Customer
                                     </span>
 
                                 @endif
@@ -125,7 +131,7 @@
                             </td>
 
 
-                            <td class="px-6 py-4 text-[#E8DDAA]">
+                            <td class="px-6 py-4 text-[#E8D8C3]">
                                 {{ $user->created_at?->format('M d, Y') ?? 'Not recorded' }}
                             </td>
 
@@ -136,8 +142,8 @@
 
                                     <a
                                         href="{{ route('users.edit', $user) }}"
-                                        class="text-[#D4AF37]
-                                               hover:text-[#F2C94C]
+                                        class="text-[#C7AD8A]
+                                               hover:text-[#E8D8C3]
                                                font-medium"
                                     >
                                         Edit
@@ -176,9 +182,9 @@
                         <tr>
                             <td
                                 colspan="5"
-                                class="px-6 py-12 text-center text-[#C9B46B]"
+                                class="px-6 py-12 text-center text-[#B9A68F]"
                             >
-                                No staff accounts found.
+                                No user accounts found.
                             </td>
                         </tr>
 
@@ -193,4 +199,5 @@
     </div>
 
 </x-app-layout>
+
 

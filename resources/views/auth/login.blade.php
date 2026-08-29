@@ -17,7 +17,7 @@
         <h1 class="gold-foil-text font-serif text-3xl font-semibold sm:text-4xl">
             Welcome Back
         </h1>
-        <p class="mt-2 text-sm text-[#E8DDAA] sm:text-base">
+        <p class="mt-2 text-sm text-[#E8D8C3] sm:text-base">
             Sign in to your management portal
         </p>
     </div>
@@ -30,7 +30,7 @@
 
         <!-- Email Address -->
         <div>
-            <label for="email" class="mb-2 block text-sm font-semibold text-[#F7E7B2]">
+            <label for="email" class="mb-2 block text-sm font-semibold text-[#F6F0E8]">
                 Email
             </label>
 
@@ -47,7 +47,7 @@
 
         <!-- Password -->
         <div>
-            <label for="password" class="mb-2 block text-sm font-semibold text-[#F7E7B2]">
+            <label for="password" class="mb-2 block text-sm font-semibold text-[#F6F0E8]">
                 Password
             </label>
 
@@ -65,12 +65,12 @@
         <!-- Remember Me -->
         <div class="flex items-center justify-between">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-[#D4AF37]/60 bg-black/30 text-[#D4AF37] shadow-sm focus:ring-[#D4AF37]" name="remember">
-                <span class="ms-2 text-sm font-medium text-[#E8DDAA]">{{ __('Remember me') }}</span>
+                <input id="remember_me" type="checkbox" class="rounded border-[#C7AD8A]/60 bg-black/30 text-[#C7AD8A] shadow-sm focus:ring-[#C7AD8A]" name="remember">
+                <span class="ms-2 text-sm font-medium text-[#E8D8C3]">{{ __('Remember me') }}</span>
             </label>
 
             @if (Route::has('password.request'))
-                <a class="rounded-md text-sm font-semibold text-[#F2C94C] hover:text-[#F7E7B2] focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2" href="{{ route('password.request') }}">
+                <a class="rounded-md text-sm font-semibold text-[#E8D8C3] hover:text-[#F6F0E8] focus:outline-none focus:ring-2 focus:ring-[#C7AD8A] focus:ring-offset-2" href="{{ route('password.request') }}">
                     {{ __('Forgot password?') }}
                 </a>
             @endif
@@ -93,9 +93,10 @@
             </svg>
         </div>
 
-        <p class="text-sm text-[#C9B46B]">
+        <p class="text-sm text-[#B9A68F]">
             Secure Management Portal
         </p>
     </div>
 </x-guest-layout>
+
 

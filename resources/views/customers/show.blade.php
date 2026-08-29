@@ -6,7 +6,7 @@
 
     <x-slot name="header">
         <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37] mb-1">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A] mb-1">
                 Customer Profile
             </p>
 
@@ -26,7 +26,7 @@
         {{-- CUSTOMER INFO --}}
         <div class="theme-card p-6">
 
-            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
+            <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A]">
                 Customer Information
             </p>
 
@@ -45,11 +45,11 @@
                 @endif
 
                 <div class="min-w-0">
-                    <p class="font-medium text-[#F7E7B2]">
+                    <p class="font-medium text-[#F6F0E8]">
                         {{ $customer->first_name }} {{ $customer->last_name }}
                     </p>
 
-                    <p class="text-xs text-[#C9B46B] mt-1">
+                    <p class="text-xs text-[#B9A68F] mt-1">
                         {{ $customer->photo_path ? 'Photo on file' : 'No photo uploaded' }}
                     </p>
                 </div>
@@ -58,31 +58,31 @@
             <div class="mt-5 space-y-4">
 
                 <div>
-                    <p class="text-xs text-[#C9B46B]">
+                    <p class="text-xs text-[#B9A68F]">
                         Full Name
                     </p>
 
-                    <p class="font-medium text-[#F7E7B2] mt-1">
+                    <p class="font-medium text-[#F6F0E8] mt-1">
                         {{ $customer->first_name }} {{ $customer->last_name }}
                     </p>
                 </div>
 
                 <div>
-                    <p class="text-xs text-[#C9B46B]">
+                    <p class="text-xs text-[#B9A68F]">
                         Mobile Number
                     </p>
 
-                    <p class="font-medium text-[#F7E7B2] mt-1">
+                    <p class="font-medium text-[#F6F0E8] mt-1">
                         {{ $customer->phone ?: 'Not provided' }}
                     </p>
                 </div>
 
                 <div>
-                    <p class="text-xs text-[#C9B46B]">
+                    <p class="text-xs text-[#B9A68F]">
                         Birth Date
                     </p>
 
-                    <p class="font-medium text-[#F7E7B2] mt-1">
+                    <p class="font-medium text-[#F6F0E8] mt-1">
                         {{ $customer->birth_date
                             ? \Carbon\Carbon::parse($customer->birth_date)->format('M d, Y')
                             : 'Not provided' }}
@@ -108,7 +108,7 @@
             @if($membership)
 
                 <div class="premium-card rounded-2xl
-                            text-[#F7E7B2]
+                            text-[#F6F0E8]
                             p-7 sm:p-9">
 
                     {{-- Decorative circles --}}
@@ -141,7 +141,7 @@
                             @if($membership->status === 'active')
 
                                 <span class="self-start rounded-full
-                                             border border-[#D4AF37]/50 bg-black/60 text-[#F7E7B2]
+                                             border border-[#C7AD8A]/50 bg-black/60 text-[#F6F0E8]
                                              px-4 py-1.5 text-xs font-semibold">
                                     ACTIVE
                                 </span>
@@ -149,7 +149,7 @@
                             @else
 
                                 <span class="self-start rounded-full
-                                             bg-white/20 text-[#F7E7B2]
+                                             bg-white/20 text-[#F6F0E8]
                                              px-4 py-1.5 text-xs font-semibold">
                                     {{ strtoupper($membership->status) }}
                                 </span>
@@ -161,7 +161,7 @@
 
                         <div class="mt-10">
 
-                            <p class="text-sm text-[#C9B46B]">
+                            <p class="text-sm text-[#B9A68F]">
                                 Member
                             </p>
 
@@ -176,7 +176,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-8">
 
                             <div>
-                                <p class="text-xs text-[#C9B46B]">
+                                <p class="text-xs text-[#B9A68F]">
                                     Membership No.
                                 </p>
 
@@ -187,7 +187,7 @@
 
 
                             <div>
-                                <p class="text-xs text-[#C9B46B]">
+                                <p class="text-xs text-[#B9A68F]">
                                     Member Discount
                                 </p>
 
@@ -198,7 +198,7 @@
 
 
                             <div>
-                                <p class="text-xs text-[#C9B46B]">
+                                <p class="text-xs text-[#B9A68F]">
                                     Valid Until
                                 </p>
 
@@ -222,7 +222,7 @@
                     <div class="flex items-center justify-between gap-4">
 
                         <div>
-                            <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
+                            <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A]">
                                 Membership Details
                             </p>
 
@@ -238,31 +238,31 @@
                                 gap-5 mt-6">
 
                         <div>
-                            <p class="text-xs text-[#C9B46B]">
+                            <p class="text-xs text-[#B9A68F]">
                                 Card Price
                             </p>
 
-                            <p class="font-medium text-[#F7E7B2] mt-1">
+                            <p class="font-medium text-[#F6F0E8] mt-1">
                                 ₱{{ number_format($plan?->price ?? 0, 2) }}
                             </p>
                         </div>
 
                         <div>
-                            <p class="text-xs text-[#C9B46B]">
+                            <p class="text-xs text-[#B9A68F]">
                                 Discount
                             </p>
 
-                            <p class="font-medium text-[#F7E7B2] mt-1">
+                            <p class="font-medium text-[#F6F0E8] mt-1">
                                 {{ number_format($plan?->discount_percentage ?? 0, 0) }}%
                             </p>
                         </div>
 
                         <div>
-                            <p class="text-xs text-[#C9B46B]">
+                            <p class="text-xs text-[#B9A68F]">
                                 Activated
                             </p>
 
-                            <p class="font-medium text-[#F7E7B2] mt-1">
+                            <p class="font-medium text-[#F6F0E8] mt-1">
                                 {{ $membership->activated_at
                                     ? $membership->activated_at->format('M d, Y')
                                     : '—' }}
@@ -270,11 +270,11 @@
                         </div>
 
                         <div>
-                            <p class="text-xs text-[#C9B46B]">
+                            <p class="text-xs text-[#B9A68F]">
                                 Validity
                             </p>
 
-                            <p class="font-medium text-[#F7E7B2] mt-1">
+                            <p class="font-medium text-[#F6F0E8] mt-1">
                                 {{ $plan?->validity_months ?? '—' }}
                                 {{ ($plan?->validity_months ?? 0) == 1 ? 'month' : 'months' }}
                             </p>
@@ -288,7 +288,7 @@
                 {{-- QR PLACEHOLDER --}}
                 <div class="theme-card p-6 mt-6">
 
-                    <p class="text-xs uppercase tracking-[0.2em] text-[#D4AF37]">
+                    <p class="text-xs uppercase tracking-[0.2em] text-[#C7AD8A]">
                         Membership QR
                     </p>
 
@@ -302,12 +302,12 @@
                             {!! QrCode::size(220)->generate($membership->qr_token) !!}
                         </div>
 
-                        <p class="text-sm text-[#C9B46B] mt-4 text-center max-w-md">
+                        <p class="text-sm text-[#B9A68F] mt-4 text-center max-w-md">
                             Staff can scan this QR code to verify the customer's membership
                             and apply the loyalty discount.
                         </p>
 
-                        <p class="text-xs text-[#D4AF37] mt-2">
+                        <p class="text-xs text-[#C7AD8A] mt-2">
                             {{ $membership->membership_code }}
                         </p>
 
@@ -323,7 +323,7 @@
                         No Loyalty Membership
                     </h2>
 
-                    <p class="text-sm text-[#C9B46B] mt-2">
+                    <p class="text-sm text-[#B9A68F] mt-2">
                         This customer does not currently have a loyalty membership.
                     </p>
 
@@ -340,11 +340,12 @@
 
         <a
             href="{{ route('customers.index') }}"
-            class="text-sm text-[#D4AF37] hover:text-[#F2C94C]">
+            class="text-sm text-[#C7AD8A] hover:text-[#E8D8C3]">
             ← Back to Customers
         </a>
 
     </div>
 
 </x-app-layout>
+
 

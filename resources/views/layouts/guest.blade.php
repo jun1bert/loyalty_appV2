@@ -8,7 +8,7 @@
         <title>{{ config('app.name', 'Martinis & Manicures Loyalty') }}</title>
         <link rel="icon" type="image/png" href="{{ asset('images/martinis-icon.png') }}">
         <link rel="apple-touch-icon" href="{{ asset('images/martinis-icon.png') }}">
-        <meta name="theme-color" content="#D4AF37">
+        <meta name="theme-color" content="#C7AD8A">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -20,11 +20,12 @@
                     {{ $slot }}
                 </div>
 
-                <p class="mt-5 text-center text-xs font-medium text-[#E8DDAA] sm:mt-6 sm:text-sm">
+                <p class="mt-5 text-center text-xs font-medium text-[#E8D8C3] sm:mt-6 sm:text-sm">
                     Martinis &amp; Manicures &copy; {{ now()->year }}
                 </p>
             </div>
         </div>
     </body>
 </html>
+
 

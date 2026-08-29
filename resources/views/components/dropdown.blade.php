@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-[#0D0D0D] border border-[#D4AF37]/30'])
+@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-[#080808] border border-[#C7AD8A]/30'])
 
 @php
 $alignmentClasses = match ($align) {
@@ -33,4 +33,5 @@ $width = match ($width) {
         </div>
     </div>
 </div>
+
 

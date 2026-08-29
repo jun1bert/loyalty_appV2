@@ -7,7 +7,7 @@
     <title>{{ config('app.name', 'Martinis & Manicures Loyalty') }}</title>
     <link rel="icon" type="image/png" href="{{ asset('images/martinis-icon.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('images/martinis-icon.png') }}">
-    <meta name="theme-color" content="#D4AF37">
+    <meta name="theme-color" content="#C7AD8A">
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />
@@ -17,7 +17,7 @@
 <body class="antialiased">
     <main class="min-h-screen px-4 py-8 sm:px-6">
         <div class="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-5xl flex-col items-center justify-center gap-8 text-center">
-            <div class="rounded-2xl border border-[var(--desert-rock)]/35 bg-[#F7E7B2] px-6 py-5 shadow-2xl shadow-black/30">
+            <div class="rounded-2xl border border-[var(--desert-rock)]/35 bg-[#F6F0E8] px-6 py-5 shadow-2xl shadow-black/30">
                 <img
                     src="{{ asset('images/martinis-logo.png') }}"
                     alt="Martinis and Manicures"
@@ -54,4 +54,5 @@
     </main>
 </body>
 </html>
+
 
