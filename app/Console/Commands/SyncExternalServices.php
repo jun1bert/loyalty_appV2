@@ -5,7 +5,9 @@ namespace App\Console\Commands;
 use App\Models\Service;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Collection;
 use Throwable;
 
 class SyncExternalServices extends Command
@@ -14,17 +16,88 @@ class SyncExternalServices extends Command
         {--dry-run : Preview services without writing to the loyalty database}
         {--inactive : Also import inactive services from the source database}';
 
-    protected $description = 'Sync services from another configured database into the local loyalty services table.';
+    protected $description = 'Sync services from a configured API or database into the local loyalty services table.';
 
     public function handle(): int
+    {
+        $sourceServices = $this->sourceServices();
+
+        if ($sourceServices === null) {
+            return self::FAILURE;
+        }
+
+        if ($sourceServices->isEmpty()) {
+            $this->info('No source services found.');
+
+            return self::SUCCESS;
+        }
+
+        return $this->importServices($sourceServices);
+    }
+
+    private function sourceServices(): ?Collection
+    {
+        if (config('services.services_sync.url')) {
+            return $this->apiServices();
+        }
+
+        return $this->databaseServices();
+    }
+
+    private function apiServices(): ?Collection
+    {
+        try {
+            $request = Http::acceptJson()
+                ->timeout((int) config('services.services_sync.timeout', 20));
+
+            if (config('services.services_sync.token')) {
+                $request = $request->withToken(config('services.services_sync.token'));
+            }
+
+            $response = $request->get(config('services.services_sync.url'));
+
+            if (!$response->successful()) {
+                $this->error('Unable to read external services API.');
+                $this->line("HTTP {$response->status()}: {$response->body()}");
+
+                return null;
+            }
+
+            $services = collect($response->json('data') ?? $response->json());
+
+            return $services
+                ->map(fn ($service) => (object) [
+                    'name' => $service['name'] ?? null,
+                    'price' => $service['price'] ?? 0,
+                    'is_active' => $service['is_active'] ?? true,
+                    'session_count' => $service['session_count'] ?? null,
+                ])
+                ->filter(function ($service) {
+                    if (!$this->option('inactive') && !$service->is_active) {
+                        return false;
+                    }
+
+                    return trim((string) $service->name) !== '';
+                })
+                ->sortBy('name')
+                ->values();
+        } catch (Throwable $exception) {
+            $this->error('Unable to read external services API.');
+            $this->line($exception->getMessage());
+
+            return null;
+        }
+    }
+
+    private function databaseServices(): ?Collection
     {
         $database = config('database.connections.external_services.database');
 
         if (!$database) {
             $this->error('SERVICES_DB_DATABASE is not configured.');
-            $this->line('Add SERVICES_DB_* values to .env, then run php artisan optimize:clear.');
+            $this->line('Add SERVICES_SYNC_URL or SERVICES_DB_* values to .env, then run php artisan optimize:clear.');
 
-            return self::FAILURE;
+            return null;
         }
 
         $table = env('SERVICES_DB_TABLE', 'services');
@@ -63,22 +136,19 @@ class SyncExternalServices extends Command
                 $query->where($activeColumn, true);
             }
 
-            $sourceServices = $query
+            return $query
                 ->orderBy($nameColumn)
                 ->get();
         } catch (Throwable $exception) {
             $this->error('Unable to read external services database.');
             $this->line($exception->getMessage());
 
-            return self::FAILURE;
+            return null;
         }
+    }
 
-        if ($sourceServices->isEmpty()) {
-            $this->info('No source services found.');
-
-            return self::SUCCESS;
-        }
-
+    private function importServices(Collection $sourceServices): int
+    {
         $created = 0;
         $updated = 0;
 
@@ -98,7 +168,7 @@ class SyncExternalServices extends Command
             $service->price = $sourceService->price;
             $service->is_active = (bool) $sourceService->is_active;
 
-            if (property_exists($sourceService, 'session_count')) {
+            if (property_exists($sourceService, 'session_count') && $sourceService->session_count !== null) {
                 $sessionCount = (int) $sourceService->session_count;
 
                 $service->is_package = $sessionCount > 1;

@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'services_sync' => [
+        'url' => env('SERVICES_SYNC_URL'),
+        'token' => env('SERVICES_SYNC_TOKEN'),
+        'timeout' => env('SERVICES_SYNC_TIMEOUT', 20),
+    ],
+
 ];
